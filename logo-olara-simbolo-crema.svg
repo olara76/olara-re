@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Olara Real Estate">
+  <title>Olara Real Estate</title>
+  <g transform="translate(60.0,60.0)" fill="#F5F1EB">
+    <g stroke="#F5F1EB" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 0,6 C 22,3 29,-22 0,-54 C -29,-22 -22,3 0,6 Z"/>
+      <line x1="0" y1="6" x2="0" y2="-54"/>
+      <path d="M 0,-16 C -10,-21 -17,-34 -20,-46"/>
+      <path d="M 0,-16 C 10,-21 17,-34 20,-46"/>
+      <path transform="rotate(90)" d="M 0,6 C 22,3 29,-22 0,-54 C -29,-22 -22,3 0,6 Z"/>
+      <line transform="rotate(90)" x1="0" y1="6" x2="0" y2="-54"/>
+      <path transform="rotate(90)" d="M 0,-16 C -10,-21 -17,-34 -20,-46"/>
+      <path transform="rotate(90)" d="M 0,-16 C 10,-21 17,-34 20,-46"/>
+      <path transform="rotate(180)" d="M 0,6 C 22,3 29,-22 0,-54 C -29,-22 -22,3 0,6 Z"/>
+      <line transform="rotate(180)" x1="0" y1="6" x2="0" y2="-54"/>
+      <path transform="rotate(180)" d="M 0,-16 C -10,-21 -17,-34 -20,-46"/>
+      <path transform="rotate(180)" d="M 0,-16 C 10,-21 17,-34 20,-46"/>
+      <path transform="rotate(270)" d="M 0,6 C 22,3 29,-22 0,-54 C -29,-22 -22,3 0,6 Z"/>
+      <line transform="rotate(270)" x1="0" y1="6" x2="0" y2="-54"/>
+      <path transform="rotate(270)" d="M 0,-16 C -10,-21 -17,-34 -20,-46"/>
+      <path transform="rotate(270)" d="M 0,-16 C 10,-21 17,-34 20,-46"/>
+    </g>
+  </g>
+</svg>
