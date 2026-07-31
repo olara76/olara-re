@@ -42,7 +42,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.375rem var(--pad);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,padding .4s}
 .nav.solid{background:rgba(13,27,42,.94);backdrop-filter:blur(16px);border-bottom-color:var(--hair);padding-top:1rem;padding-bottom:1rem}
-.brand .fallback{font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase}
+.brand img{height:34px;width:auto;display:block}
 .brand .fallback b{color:var(--gold);font-weight:600}
 .nav-cta{font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.75rem 1.5rem;transition:background .3s,color .3s}
 .nav-cta:hover{background:var(--gold);color:var(--navy)}
@@ -51,9 +51,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 /* ---------- hero ---------- */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-bottom:clamp(2.5rem,6vh,5rem)}
 .hero-media{position:absolute;inset:0;z-index:0}
-/* SUSTITUIR por foto stock premium 2400x1600 */
-.hero-media .ph-bg{width:100%;height:100%;background:radial-gradient(120% 90% at 74% 10%,#1C3049 0%,#12233A 45%,#0D1B2A 100%)}
-.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.97) 0%,rgba(13,27,42,.6) 50%,rgba(13,27,42,.8) 100%)}
+.hero-media .ph-bg{width:100%;height:100%;background:#12233A url('/img/hero-1200.jpg') center 40% / cover no-repeat}
+@media(min-width:1280px){.hero-media .ph-bg{background-image:url('/img/hero.jpg')}}
+@media(max-width:560px){.hero-media .ph-bg{background-image:url('/img/hero-800.jpg')}}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.97) 0%,rgba(13,27,42,.88) 30%,rgba(13,27,42,.66) 60%,rgba(13,27,42,.74) 100%)}
 .hero-inner{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 h1{font-family:var(--serif);font-weight:300;line-height:1.03;font-size:clamp(2.6rem,7.6vw,6rem);text-wrap:balance;margin-top:1.5rem}
 h1 em{font-style:italic;color:var(--gold)}
@@ -179,8 +180,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <a class="brand" href="#top" aria-label="Olara RE">
-    <!-- SUSTITUIR: <img src="logo-olara-re-crema.svg" alt="Olara RE"> -->
-    <span class="fallback">Olara <b>RE</b></span>
+    <img src="/logo-olara-re-horizontal-crema.svg" alt="Olara Real Estate" width="118" height="34">
   </a>
   <a class="nav-cta" href="#plazas">Solicita tu plaza</a>
 </header>
@@ -451,7 +451,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
 <footer>
   <div class="foot-top">
     <div>
-      <span class="fallback" style="font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase">Olara <b style="color:var(--gold)">RE</b></span>
+      <img src="/logo-olara-re-horizontal-crema.svg" alt="Olara Real Estate" width="139" height="40">
       <p class="tag">Agencia inmobiliaria premium en Madrid.</p>
     </div>
     <nav class="foot-nav">
