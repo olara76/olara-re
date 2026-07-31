@@ -1,512 +1,621 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olara Real Estate · Programa Socios Fundadores</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olara RE — Agencia inmobiliaria premium en Madrid</title>
+<meta name="description" content="Agencia inmobiliaria premium en Madrid. Comercialización de vivienda de alto valor y estructuración de operaciones de inversión.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --gold:#B8996A; --gold-light:#D4B88A; --gold-dark:#8A6E42;
-  --navy:#0D1B2A; --navy-mid:#1A2E42; --navy-soft:#13263a;
-  --cream:#F5F1EB; --cream-dark:#EAE4D8;
-  --text:#0D1B2A; --text-sec:#4A5568; --text-muted:#8A9BB0;
-  --white:#FFFFFF; --border:rgba(184,153,106,0.25);
-  --border-light:rgba(13,27,42,0.10);
+  --navy:#0D1B2A;
+  --navy-2:#12233A;
+  --gold:#B8996A;
+  --cream:#F5F1EB;
+  --cream-2:#E4DED4;
+  --muted:#8A94A0;
+  --hair:#26374B;
+  --hair-light:#D9D2C6;
+  --ink-soft:#5C6675;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --pad:clamp(1.5rem,5vw,6rem);
+  --max:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--navy);color:var(--cream);
+  font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{font-size:.6875rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+/* firma de marca */
+.mark{width:64px;height:2px;background:var(--gold);border:0;margin-bottom:1.75rem}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.375rem var(--pad);border-bottom:1px solid transparent;
+  transition:background .4s ease,border-color .4s ease,padding .4s ease;
+}
+.nav.solid{background:rgba(13,27,42,.94);backdrop-filter:blur(16px);border-bottom-color:var(--hair);padding-top:1rem;padding-bottom:1rem}
+.brand img{height:26px;width:auto}
+.brand .fallback{font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase}
+.brand .fallback b{color:var(--gold);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:2.25rem}
+.nav-links a{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-2);transition:color .25s}
+.nav-links a:hover{color:var(--gold)}
+.lang{display:flex;align-items:center;gap:.4rem;font-size:.6875rem;font-weight:500;letter-spacing:.14em}
+.lang button{color:var(--muted);padding:.2rem;transition:color .25s}
+.lang button[aria-pressed="true"]{color:var(--gold)}
+.lang span{color:var(--hair)}
+.burger{display:none;width:26px;height:13px;position:relative}
+.burger i{position:absolute;left:0;right:0;height:1px;background:var(--cream);transition:transform .3s}
+.burger i:first-child{top:0}.burger i:last-child{bottom:0}
+@media(max-width:900px){
+  .nav-links{
+    position:fixed;inset:0;background:var(--navy);flex-direction:column;
+    justify-content:center;gap:2.25rem;transform:translateY(-100%);
+    transition:transform .45s cubic-bezier(.7,0,.2,1);
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{font-family:var(--serif);font-size:1.75rem;letter-spacing:0;text-transform:none;color:var(--cream)}
+  .burger{display:block;z-index:70}
+  .nav.menu-open .burger i:first-child{transform:translateY(6px) rotate(45deg)}
+  .nav.menu-open .burger i:last-child{transform:translateY(-6px) rotate(-45deg)}
 }
 
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
-
-.wrap{max-width:1080px;margin:0 auto;padding:0 40px}
-.serif{font-family:'Cormorant Garamond',serif}
-.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:500;color:var(--gold-dark)}
-.eyebrow.on-dark{color:var(--gold-light)}
-.mono{font-family:'IBM Plex Mono',monospace}
-
-/* ---------- LOGO ---------- */
-.logo{display:flex;align-items:center;gap:13px}
-.logo-mark{width:38px;height:38px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-mark span{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold);line-height:1}
-.logo-text{display:flex;flex-direction:column;line-height:1.1}
-.logo-text b{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;letter-spacing:.04em}
-.logo-text small{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-dark);font-weight:500}
-.on-dark .logo-text b,.hero .logo-text b{color:var(--cream)}
-.on-dark .logo-text small,.hero .logo-text small{color:var(--gold-light)}
-
-/* ---------- NAV ---------- */
-.nav{position:sticky;top:0;z-index:50;background:rgba(13,27,42,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(184,153,106,.18)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.nav-cta{font-size:13px;letter-spacing:.04em;color:var(--navy);background:var(--gold);padding:11px 22px;text-decoration:none;font-weight:500;transition:background .25s}
-.nav-cta:hover{background:var(--gold-light)}
-
-/* ---------- HERO ---------- */
-.hero{background:var(--navy);color:var(--cream);position:relative;overflow:hidden;padding:96px 0 110px}
-.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,153,106,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,153,106,.05) 1px,transparent 1px);background-size:78px 78px}
-.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 80% 0%,rgba(184,153,106,.12) 0%,transparent 55%)}
-.hero .wrap{position:relative;z-index:1}
-.hero-eyebrow{margin-bottom:30px}
-.hero h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(42px,6vw,76px);line-height:1.04;letter-spacing:-.01em;max-width:15ch}
-.hero h1 em{font-style:italic;color:var(--gold-light)}
-.hero-sub{font-size:clamp(17px,2vw,20px);color:#C9D3DF;font-weight:300;max-width:46ch;margin:30px 0 42px;line-height:1.6}
-.hero-actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--navy);padding:16px 34px;font-weight:500;font-size:15px;letter-spacing:.03em;text-decoration:none;transition:transform .25s,background .25s}
-.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
-.btn-ghost{display:inline-block;border:1px solid rgba(184,153,106,.45);color:var(--cream);padding:16px 30px;font-size:15px;text-decoration:none;font-weight:400;transition:border-color .25s,background .25s}
-.btn-ghost:hover{border-color:var(--gold);background:rgba(184,153,106,.08)}
-.hero-meta{display:flex;gap:46px;margin-top:64px;flex-wrap:wrap}
-.hero-meta .m-num{font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--gold-light);line-height:1}
-.hero-meta .m-lab{font-size:12.5px;color:var(--text-muted);letter-spacing:.04em;margin-top:8px;max-width:18ch}
-
-/* ---------- SECTION SHELL ---------- */
-section{padding:96px 0}
-.sec-head{max-width:62ch;margin-bottom:54px}
-.sec-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(32px,4.4vw,50px);line-height:1.08;letter-spacing:-.01em;margin-top:18px}
-.sec-head h2 em{font-style:italic;color:var(--gold-dark)}
-.sec-head p{margin-top:18px;color:var(--text-sec);font-size:17px;font-weight:300;max-width:52ch}
-.divider-rule{width:54px;height:2px;background:var(--gold);margin-bottom:4px}
-
-/* ---------- TECHO ---------- */
-.techo{background:var(--cream-dark)}
-.techo .quote{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.8vw,40px);line-height:1.28;letter-spacing:-.01em;max-width:24ch}
-.techo .quote em{font-style:italic;color:var(--gold-dark)}
-.techo .quote .strike{color:var(--text-muted)}
-
-/* ---------- PALANCA ---------- */
-.pillars{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:8px}
-.pillar{background:var(--white);border:1px solid var(--border-light);padding:42px 38px;position:relative}
-.pillar .p-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold-dark);letter-spacing:.1em}
-.pillar h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:14px 0 14px;line-height:1.1}
-.pillar p{color:var(--text-sec);font-size:15.5px;font-weight:300}
-.pillar .p-tag{display:inline-block;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--navy);border-top:1px solid var(--border);padding-top:16px;width:100%}
-.pillar .p-tag b{color:var(--gold-dark);font-weight:500}
-
-/* ---------- COMISIONES TABLE ---------- */
-.tablewrap{overflow-x:auto;border:1px solid var(--border-light);background:var(--white)}
-table.comm{width:100%;border-collapse:collapse;min-width:560px}
-table.comm th,table.comm td{text-align:left;padding:18px 24px;border-bottom:1px solid var(--border-light)}
-table.comm thead th{background:var(--navy);color:var(--cream);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-table.comm thead th.num,table.comm td.num{text-align:center}
-table.comm tbody td{font-size:15px;color:var(--text-sec)}
-table.comm tbody td:first-child{color:var(--text);font-weight:500}
-table.comm td .pct{font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--navy)}
-table.comm td .pct.olara{color:var(--gold-dark);font-weight:500}
-table.comm tbody tr:last-child td{border-bottom:none}
-.comm-note{font-size:13.5px;color:var(--text-muted);margin-top:18px;font-style:italic}
-
-/* ---------- TOKEN EXPLAINER ---------- */
-.token-x{background:var(--navy);color:var(--cream)}
-.token-x .sec-head h2{color:var(--cream)}
-.token-x .sec-head h2 em{color:var(--gold-light)}
-.token-x .sec-head p{color:#C9D3DF}
-.tx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:10px}
-.tx-card{border:1px solid rgba(184,153,106,.22);padding:34px 30px;background:rgba(184,153,106,.04)}
-.tx-card .tx-ico{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-light);line-height:1;margin-bottom:18px}
-.tx-card h4{font-size:17px;font-weight:600;margin-bottom:10px;letter-spacing:.01em}
-.tx-card p{font-size:14.5px;color:#B7C2CF;font-weight:300}
-.tx-banner{margin-top:40px;border-left:2px solid var(--gold);padding:20px 28px;background:rgba(184,153,106,.07);font-size:15.5px;color:#D8E0E8;font-weight:300}
-.tx-banner b{color:var(--gold-light);font-weight:600}
-
-/* ---------- SIMULADOR ---------- */
-.sim{background:var(--cream)}
-.sim-card{background:var(--white);border:1px solid var(--border);box-shadow:0 24px 60px -38px rgba(13,27,42,.4)}
-.sim-top{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.sim-inputs{padding:44px 44px;border-right:1px solid var(--border-light)}
-.sim-out{padding:44px 44px;background:var(--navy);color:var(--cream)}
-.sim-field{margin-bottom:38px}
-.sim-field:last-child{margin-bottom:0}
-.sim-field .lab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
-.sim-field .lab span{font-size:14px;color:var(--text-sec);font-weight:500}
-.sim-field .lab b{font-family:'IBM Plex Mono',monospace;font-size:19px;color:var(--navy);font-weight:500}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--cream-dark);outline:none;border-radius:2px}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--white);box-shadow:0 2px 8px rgba(138,110,66,.4)}
-input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--white)}
-.sim-scale{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-top:9px}
-.sim-out .o-eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light);margin-bottom:28px}
-.o-row{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(184,153,106,.18)}
-.o-row .o-lab{font-size:13.5px;color:#B7C2CF;font-weight:300;max-width:20ch}
-.o-row .o-val{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-light);line-height:1}
-.o-row .o-val small{font-size:15px;color:#C9D3DF}
-.o-scen{margin-top:30px}
-.o-scen .o-scen-h{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
-.scen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.scen-box{border:1px solid rgba(184,153,106,.22);padding:16px 14px;text-align:center}
-.scen-box .s-lab{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
-.scen-box .s-val{font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--cream);font-weight:500}
-.scen-box.base{border-color:var(--gold);background:rgba(184,153,106,.1)}
-.scen-box.base .s-val{color:var(--gold-light)}
-.sim-disc{padding:22px 44px;background:var(--cream-dark);font-size:12.5px;color:var(--text-sec);line-height:1.6;font-style:italic}
-.sim-disc b{font-style:normal;color:var(--navy)}
-
-/* ---------- REGLAS ---------- */
-.reglas{background:var(--white)}
-.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border-light)}
-.rule-item{padding:32px 36px;border-bottom:1px solid var(--border-light)}
-.rule-item:nth-child(odd){border-right:1px solid var(--border-light)}
-.rule-item .r-k{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.rule-item .r-k .dot{width:7px;height:7px;background:var(--gold);border-radius:50%;flex-shrink:0}
-.rule-item .r-k h4{font-size:15px;font-weight:600;letter-spacing:.01em}
-.rule-item p{font-size:14.5px;color:var(--text-sec);font-weight:300;padding-left:19px}
-.rule-item p b{color:var(--gold-dark);font-weight:500}
-
-/* ---------- PLAZAS / CTA ---------- */
-.plazas{background:var(--navy);color:var(--cream);text-align:center;position:relative;overflow:hidden}
-.plazas::before{content:'';position:absolute;inset:0;background:radial-gradient(100% 80% at 50% 0%,rgba(184,153,106,.14),transparent 60%)}
-.plazas .wrap{position:relative;z-index:1}
-.seal{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:36px}
-.seal-ring{width:120px;height:120px;border:1.5px solid var(--gold);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
-.seal-ring::after{content:'';position:absolute;inset:7px;border:1px solid rgba(184,153,106,.35);border-radius:50%}
-.seal-ring .rn{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold-light);line-height:1}
-.seal-ring .rt{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:2px}
-.seal-cap{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-muted)}
-.plazas h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(34px,4.8vw,56px);line-height:1.08;max-width:18ch;margin:0 auto 22px}
-.plazas h2 em{font-style:italic;color:var(--gold-light)}
-.plazas p{color:#C9D3DF;font-weight:300;max-width:48ch;margin:0 auto 42px;font-size:17px}
-.dots6{display:flex;gap:10px;justify-content:center;margin-bottom:46px}
-.dots6 .d{width:13px;height:13px;border:1.5px solid var(--gold);border-radius:50%}
-.dots6 .d.filled{background:var(--gold)}
-
-/* ---------- FOOTER ---------- */
-footer{background:var(--navy-soft);color:var(--text-muted);padding:54px 0 40px;border-top:1px solid rgba(184,153,106,.15)}
-.foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:32px;border-bottom:1px solid rgba(184,153,106,.12)}
-.foot-top p{font-size:13.5px;max-width:40ch;font-weight:300;margin-top:16px;color:#8A9BB0}
-.foot-contact{font-size:14px;color:#C9D3DF;font-weight:300;line-height:1.9}
-.foot-contact a{color:var(--gold-light);text-decoration:none}
-.foot-disc{font-size:11.5px;line-height:1.7;color:#6F8095;margin-top:28px;font-weight:300;max-width:90ch}
-.foot-disc b{color:#8A9BB0;font-weight:500}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:860px){
-  .wrap{padding:0 24px}
-  section{padding:68px 0}
-  .pillars,.tx-grid,.sim-top,.rule-grid,.scen-grid{grid-template-columns:1fr}
-  .tx-grid{gap:16px}
-  .sim-inputs{border-right:none;border-bottom:1px solid var(--border-light)}
-  .rule-item:nth-child(odd){border-right:none}
-  .hero-meta{gap:32px}
-  .nav-cta{display:none}
-  .sim-disc,.sim-inputs,.sim-out{padding-left:28px;padding-right:28px}
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;overflow:hidden;padding-bottom:clamp(3rem,8vh,6rem);
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
-:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.hero-media{position:absolute;inset:0;z-index:0}
+/* SUSTITUIR por foto stock premium 2400x1600 — interior o fachada Madrid, tono cálido */
+.hero-media .ph-bg{
+  width:100%;height:100%;
+  background:radial-gradient(120% 90% at 72% 12%,#1C3049 0%,#12233A 45%,#0D1B2A 100%);
+}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,27,42,.97) 0%,rgba(13,27,42,.62) 48%,rgba(13,27,42,.78) 100%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.hero .eyebrow{margin-bottom:1.5rem}
+h1{
+  font-family:var(--serif);font-weight:300;letter-spacing:-.005em;line-height:1.02;
+  font-size:clamp(2.9rem,9vw,7rem);text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--gold);font-weight:300}
+.hero-sub{margin-top:clamp(1.5rem,3.5vh,2.25rem);max-width:44ch;font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--cream-2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.875rem;margin-top:clamp(2rem,4.5vh,3rem)}
+
+/* ---------- botones ---------- */
+.btn{display:inline-block;padding:1.0625rem 2.25rem;font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;transition:background .3s,color .3s,border-color .3s}
+.btn-solid{background:var(--gold);color:var(--navy);border:1px solid var(--gold)}
+.btn-solid:hover{background:transparent;color:var(--gold)}
+.btn-ghost{border:1px solid var(--hair);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.on-light .btn-solid{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.on-light .btn-solid:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+
+/* ---------- secciones ---------- */
+.band{padding-top:clamp(5rem,13vh,10rem);padding-bottom:clamp(5rem,13vh,10rem)}
+.on-light{background:var(--cream);color:var(--navy)}
+h2{font-family:var(--serif);font-weight:300;line-height:1.1;font-size:clamp(2rem,4.6vw,3.5rem);text-wrap:balance}
+h2 em{font-style:italic;color:var(--gold)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(1.5rem,5vw,5rem);align-items:end;padding-bottom:clamp(2.5rem,6vh,4.5rem)}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:1.25rem;align-items:start}}
+.rule{height:1px;background:var(--hair);border:0}
+.on-light .rule{background:var(--hair-light)}
+
+/* ---------- manifiesto ---------- */
+.manifest .claim{font-family:var(--serif);font-size:clamp(1.375rem,2.4vw,2rem);line-height:1.38;color:var(--cream);max-width:32ch;font-weight:300}
+.manifest .small{font-size:.9375rem;line-height:1.8;color:var(--muted);max-width:56ch}
+
+/* ---------- servicios ---------- */
+.services{border-top:1px solid var(--hair-light)}
+.service{
+  display:grid;grid-template-columns:4rem minmax(0,1fr) minmax(0,1.2fr);
+  gap:clamp(1.25rem,4vw,4rem);align-items:start;
+  padding:clamp(2.25rem,5vh,3.5rem) 0;border-bottom:1px solid var(--hair-light);
+}
+.service .idx{font-family:var(--serif);font-size:1.5rem;color:var(--gold);line-height:1.1}
+.service h3{font-family:var(--serif);font-size:clamp(1.4rem,2.4vw,2rem);font-weight:400;line-height:1.15}
+.service p{color:var(--ink-soft);font-size:.9375rem;max-width:54ch}
+.service .note{display:block;margin-top:1rem;font-size:.75rem;color:#8A8375}
+@media(max-width:820px){.service{grid-template-columns:1fr;gap:.75rem}}
+
+/* ---------- proceso ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.step{background:var(--navy);padding:clamp(1.75rem,3.2vw,2.5rem) clamp(1.25rem,2.2vw,1.875rem);min-height:15rem;display:flex;flex-direction:column}
+.step .num{font-family:var(--serif);font-size:1.375rem;color:var(--gold);line-height:1.1}
+.step h3{font-family:var(--serif);margin-top:auto;padding-top:2.5rem;font-size:clamp(1.25rem,1.7vw,1.5rem);font-weight:400}
+.step p{margin-top:.625rem;font-size:.875rem;color:var(--muted)}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}.step{min-height:0}}
+
+/* ---------- zonas ---------- */
+.zones{display:flex;flex-wrap:wrap;gap:0 clamp(1.25rem,3vw,2.5rem);align-items:baseline}
+.zones li{list-style:none;font-family:var(--serif);font-weight:300;font-size:clamp(1.875rem,6vw,4rem);line-height:1.25;color:#3C4C60;transition:color .3s}
+.zones li:hover{color:var(--cream)}
+.zones li[data-mark="1"]{color:var(--gold);font-style:italic}
+.zones-note{margin-top:clamp(1.75rem,4vh,2.5rem);color:var(--muted);font-size:.875rem;max-width:50ch}
+
+/* ---------- galería ---------- */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.5rem,1.1vw,.875rem)}
+.gallery .tall{grid-row:span 2}
+.ph{position:relative;width:100%;aspect-ratio:4/5;background:var(--navy-2);border:1px solid var(--hair);display:flex;align-items:center;justify-content:center}
+.ph::after{content:attr(data-note);position:absolute;font-size:.625rem;letter-spacing:.16em;text-transform:uppercase;color:#54637A;text-align:center;padding:1rem;line-height:1.9}
+.gallery .tall .ph{aspect-ratio:4/9}
+@media(max-width:820px){
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gallery .tall{grid-row:span 1}
+  .gallery .tall .ph{aspect-ratio:4/5}
+}
+
+/* ---------- contacto ---------- */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2.5rem,6vw,6rem)}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.contact-aside .lead{color:var(--ink-soft);max-width:42ch;margin:1.5rem 0 2.5rem;font-size:.9375rem}
+.direct{border-top:1px solid var(--hair-light)}
+.direct a,.direct div{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;padding:1.125rem 0;border-bottom:1px solid var(--hair-light);font-size:.9375rem;transition:padding-left .3s,color .3s}
+.direct a:hover{padding-left:.5rem;color:var(--gold)}
+.direct .k{font-size:.6875rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#8A8375;flex:none}
+.field{margin-bottom:1.5rem}
+.field label{display:block;font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#8A8375;margin-bottom:.5rem}
+.field input,.field select,.field textarea{
+  width:100%;font-family:var(--serif);font-size:1.1875rem;color:var(--navy);
+  background:transparent;border:0;border-bottom:1px solid var(--hair-light);
+  padding:.5rem 0;border-radius:0;transition:border-color .3s;
+}
+.field textarea{resize:vertical;min-height:5rem}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-bottom-color:var(--gold)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.consent{display:flex;gap:.75rem;align-items:flex-start;margin:2rem 0;font-size:.75rem;color:var(--ink-soft);line-height:1.7}
+.consent input{width:1rem;height:1rem;flex:none;margin-top:.15rem;accent-color:var(--gold)}
+.consent a{text-decoration:underline;text-underline-offset:2px}
+.form-msg{margin-top:1.25rem;font-size:.8125rem;color:var(--navy);display:none}
+.form-msg.show{display:block}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 2.5rem}
+.foot-top{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;padding-bottom:3rem}
+.foot-top .tag{font-family:var(--serif);font-size:1.125rem;color:var(--cream-2);max-width:30ch;margin-top:1rem;font-weight:300}
+.foot-nav{display:flex;flex-wrap:wrap;gap:1.75rem;align-items:flex-start}
+.foot-nav a{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+.foot-nav a:hover{color:var(--gold)}
+.legal{max-width:var(--max);margin:0 auto;padding-top:2rem;border-top:1px solid var(--hair);font-size:.6875rem;line-height:1.95;color:#5B6878}
+.legal a{text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- whatsapp ---------- */
+.wa{
+  position:fixed;right:clamp(1rem,3vw,2rem);bottom:clamp(1rem,3vw,2rem);z-index:80;
+  display:flex;align-items:center;gap:.625rem;background:var(--gold);color:var(--navy);
+  padding:.875rem 1.25rem;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  box-shadow:0 10px 40px rgba(0,0,0,.45);transition:transform .3s;
+}
+.wa:hover{transform:translateY(-3px)}
+.wa svg{width:15px;height:15px;flex:none}
+@media(max-width:560px){.wa span{display:none}.wa{padding:1rem;border-radius:50%}}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="wrap">
-    <div class="logo on-dark">
-      <div class="logo-mark"><span>O</span></div>
-      <div class="logo-text"><b>OLARA</b><small>Real Estate</small></div>
-    </div>
-    <a href="#solicitar" class="nav-cta">Solicitar plaza</a>
-  </div>
-</nav>
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Olara RE">
+    <!-- SUSTITUIR: <img src="logo-olara-re-crema.svg" alt="Olara RE"> -->
+    <span class="fallback">Olara <b>RE</b></span>
+  </a>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-eyebrow eyebrow on-dark">Programa Socios Fundadores · Madrid</div>
-    <h1 class="serif">Cobra como agente.<br>Gana como <em>socio</em>.</h1>
-    <p class="hero-sub">En Olara no trabajas para una marca: construyes tu propio patrimonio. Comisión de hasta el 70% sobre tu producción y participación real en la agencia que ayudas a levantar.</p>
-    <div class="hero-actions">
-      <a href="#solicitar" class="btn-gold">Solicita tu plaza de fundador</a>
-      <a href="#simulador" class="btn-ghost">Calcula tu participación</a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#servicios" data-i18n="nav1">Servicios</a>
+    <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
+    <a href="#zonas" data-i18n="nav3">Zonas</a>
+    <a href="#contacto" data-i18n="nav4">Contacto</a>
+  </nav>
+
+  <div style="display:flex;align-items:center;gap:1.5rem">
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <span>/</span>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
-    <div class="hero-meta">
-      <div><div class="m-num serif">70%</div><div class="m-lab">de comisión sobre tu producto propio</div></div>
-      <div><div class="m-num serif">10%</div><div class="m-lab">del capital reservado a los agentes</div></div>
-      <div><div class="m-num serif">VI</div><div class="m-lab">plazas de socio fundador</div></div>
-    </div>
+    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><i></i><i></i></button>
   </div>
 </header>
 
-<!-- EL TECHO -->
-<section class="techo">
-  <div class="wrap">
-    <div class="eyebrow">El techo invisible</div>
-    <p class="quote serif" style="margin-top:24px">Llevas años generando millones para una marca y <span class="strike">no posees nada de ella</span>. Tu esfuerzo capitaliza a otro. <em>Eso cambia aquí.</em></p>
-  </div>
-</section>
-
-<!-- DOBLE PALANCA -->
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="divider-rule"></div>
-      <div class="eyebrow">La propuesta</div>
-      <h2 class="serif">Dos formas de ganar, <em>a la vez</em></h2>
-      <p>La competencia te ofrece una comisión. Nosotros te ofrecemos comisión alta hoy y propiedad mañana. La diferencia, con el tiempo, no se parece en nada.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="p-num">01 — CASH</div>
-        <h3 class="serif">Comisión de hasta el 70%</h3>
-        <p>Cobras por cada operación según quién aporta el producto. Tu cartera propia, tu máximo split. Sin sueldo fijo que te limite ni estructura que te frene.</p>
-        <div class="p-tag">Liquidación inmediata · <b>hasta 70% por operación</b></div>
-      </div>
-      <div class="pillar">
-        <div class="p-num">02 — EQUITY</div>
-        <h3 class="serif">Participación tokenizada</h3>
-        <p>Acumulas acciones de Olara RE según tu facturación y el talento que captas. Equity real que se revaloriza con la agencia y que cobras si la vendemos.</p>
-        <div class="p-tag">Acciones reguladas · <b>se revaloriza contigo</b></div>
-      </div>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-media" aria-hidden="true"><div class="ph-bg"></div></div>
+  <div class="hero-inner">
+    <p class="eyebrow" data-i18n="heroEyebrow">Agencia inmobiliaria premium · Madrid</p>
+    <h1><span data-i18n="h1a">Vender</span> <em data-i18n="h1b">bien</em><br><span data-i18n="h1c">no es vender rápido.</span></h1>
+    <p class="hero-sub" data-i18n="heroSub">Comercializamos vivienda de alto valor en Madrid y estructuramos operaciones de inversión. Pocas propiedades, atención directa y un precio que se defiende con datos.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#contacto" data-i18n="cta1">Solicitar valoración</a>
+      <a class="btn btn-ghost" href="#servicios" data-i18n="cta2">Ver servicios</a>
     </div>
   </div>
 </section>
 
-<!-- COMISIONES -->
-<section style="background:var(--cream-dark)">
+<!-- ============ MANIFIESTO ============ -->
+<section class="band manifest">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="divider-rule"></div>
-      <div class="eyebrow">Reparto de comisiones</div>
-      <h2 class="serif">Las reglas, <em>sobre la mesa</em></h2>
-      <p>Lo que cobras depende de quién aporta el producto y quién lo trabaja. Sin letra pequeña: este es el reparto completo.</p>
+    <hr class="mark">
+    <div class="sec-head" style="padding-bottom:0;align-items:start">
+      <p class="claim" data-i18n="manTitle">Una propiedad excepcional no necesita más portales. Necesita mejor criterio.</p>
+      <p class="small" data-i18n="manBody">El mercado premium de Madrid no se mueve por volumen de anuncios, sino por preparación del activo, precio bien construido y acceso al comprador correcto. Trabajamos pocas propiedades a la vez porque es la única forma de hacer las tres cosas bien.</p>
     </div>
-    <div class="tablewrap">
-      <table class="comm">
-        <thead>
-          <tr>
-            <th>Tipo de operación</th>
-            <th class="num">Captador</th>
-            <th class="num">Vendedor</th>
-            <th class="num">Olara</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Producto propio <span style="color:var(--text-muted);font-weight:400">(captas y vendes tú)</span></td>
-            <td class="num"><span class="pct">70%</span></td>
-            <td class="num">—</td>
-            <td class="num"><span class="pct olara">30%</span></td>
-          </tr>
-          <tr>
-            <td>Operación compartida <span style="color:var(--text-muted);font-weight:400">(capta uno, vende otro)</span></td>
-            <td class="num"><span class="pct">35%</span></td>
-            <td class="num"><span class="pct">35%</span></td>
-            <td class="num"><span class="pct olara">30%</span></td>
-          </tr>
-          <tr>
-            <td>Activo para reformar <span style="color:var(--text-muted);font-weight:400">(lo compra Olara o un inversor)</span></td>
-            <td class="num"><span class="pct">80%</span></td>
-            <td class="num">—</td>
-            <td class="num"><span class="pct olara">20%</span></td>
-          </tr>
-          <tr>
-            <td>Activo reformado / terminado <span style="color:var(--text-muted);font-weight:400">(de inversor o particular)</span></td>
-            <td class="num"><span class="pct">20%</span></td>
-            <td class="num"><span class="pct">20%</span></td>
-            <td class="num"><span class="pct olara">60%</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="comm-note">Captar en exclusiva y construir relaciones con inversores recurrentes pondera doble y triple en tu devengo de tokens. El cash premia vender; el equity premia construir el activo de la casa.</p>
   </div>
 </section>
 
-<!-- TOKEN EXPLAINER -->
-<section class="token-x">
+<!-- ============ SERVICIOS ============ -->
+<section class="band on-light" id="servicios">
   <div class="wrap">
     <div class="sec-head">
-      <div class="divider-rule"></div>
-      <div class="eyebrow on-dark">Qué es exactamente</div>
-      <h2 class="serif">No es cripto. Son <em>acciones reguladas</em>.</h2>
-      <p>Tu participación es un título de propiedad sobre Olara RE, registrado con pleno reconocimiento jurídico. No es una moneda especulativa: es equity, en formato digital.</p>
+      <div>
+        <hr class="mark">
+        <p class="eyebrow">Servicios</p>
+      </div>
+      <h2><span data-i18n="svcTitle">Tres formas de trabajar</span> <em data-i18n="svcTitleEm">con nosotros.</em></h2>
     </div>
-    <div class="tx-grid">
-      <div class="tx-card">
-        <div class="tx-ico serif">§</div>
-        <h4>Reconocimiento jurídico</h4>
-        <p>Acciones tokenizadas (security token) emitidas en el marco regulado de la CNMV, a través de la infraestructura de Token City. Lo mismo que una acción, en blockchain.</p>
-      </div>
-      <div class="tx-card">
-        <div class="tx-ico serif">↗</div>
-        <h4>Sin riesgo de pérdidas</h4>
-        <p>Olara RE es una sociedad limitada. Nunca respondes de las deudas con tu patrimonio ni se te llama a poner capital. Solo upside: tu participación se revaloriza o no, nada más.</p>
-      </div>
-      <div class="tx-card">
-        <div class="tx-ico serif">◷</div>
-        <h4>Liquidez ordenada</h4>
-        <p>No es un token para tradear. Es equity que se revaloriza y que Olara te recompra a precio de fórmula en ventanas anuales. Transparencia total desde el primer día.</p>
-      </div>
+
+    <div class="services">
+      <article class="service rv">
+        <div class="idx">I</div>
+        <h3 data-i18n="s1t">Venta de vivienda premium</h3>
+        <p>
+          <span data-i18n="s1b">Preparamos el activo antes de sacarlo al mercado, fijamos un precio que se sostiene con comparables reales y lo presentamos a una lista corta de compradores cualificados. Fotografía, plano y dossier incluidos.</span>
+          <span class="note" data-i18n="s1n">Mandato en exclusiva. Honorarios acordados por escrito antes de empezar.</span>
+        </p>
+      </article>
+
+      <article class="service rv">
+        <div class="idx">II</div>
+        <h3 data-i18n="s2t">Valoración</h3>
+        <p>
+          <span data-i18n="s2b">Un informe con las operaciones realmente cerradas en su zona y en su tipología, no una horquilla automática de portal. Le decimos lo que vale su casa y lo que cambiaría ese número.</span>
+          <span class="note" data-i18n="s2n">Sin coste y sin compromiso de mandato.</span>
+        </p>
+      </article>
+
+      <article class="service rv">
+        <div class="idx">III</div>
+        <h3 data-i18n="s3t">Inversión y tokenización</h3>
+        <p>
+          <span data-i18n="s3b">Analizamos operaciones de inversión inmobiliaria —retorno, coste de reforma, vía de salida— y estructuramos su vehículo, incluida la tokenización del activo cuando la operación lo justifica.</span>
+          <span class="note" data-i18n="s3n">La emisión y el registro de activos tokenizados se ejecutan siempre con entidades autorizadas por la CNMV.</span>
+        </p>
+      </article>
     </div>
-    <div class="tx-banner">El valor de tu participación está en <b>la revalorización de la agencia y en su venta futura</b> — no en especular con un precio diario. Te tratamos como socio, no como inversor de cripto.</div>
   </div>
 </section>
 
-<!-- SIMULADOR -->
-<section class="sim" id="simulador">
+<!-- ============ PROCESO ============ -->
+<section class="band" id="proceso" style="padding-bottom:0">
   <div class="wrap">
     <div class="sec-head">
-      <div class="divider-rule"></div>
-      <div class="eyebrow">Simulador ilustrativo</div>
-      <h2 class="serif">Pon tus números. <em>Mira cómo escala.</em></h2>
-      <p>Ajusta tu producción esperada y verás cómo se construye tu participación. No es una promesa: es el mecanismo, para que entiendas cómo tu esfuerzo se convierte en patrimonio.</p>
+      <div>
+        <hr class="mark">
+        <p class="eyebrow">Cómo trabajamos</p>
+      </div>
+      <h2><span data-i18n="prcTitle">Cuatro fases.</span> <em data-i18n="prcTitleEm">Sin sorpresas en ninguna.</em></h2>
     </div>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(5rem,13vh,10rem)">
+    <div class="steps">
+      <div class="step rv">
+        <span class="num">I</span>
+        <h3 data-i18n="p1t">Valoración</h3>
+        <p data-i18n="p1b">Visitamos el inmueble y le entregamos el informe con comparables. Aquí decide si seguimos.</p>
+      </div>
+      <div class="step rv">
+        <span class="num">II</span>
+        <h3 data-i18n="p2t">Preparación</h3>
+        <p data-i18n="p2b">Documentación, reportaje fotográfico, plano y dossier. Nada sale al mercado a medias.</p>
+      </div>
+      <div class="step rv">
+        <span class="num">III</span>
+        <h3 data-i18n="p3t">Comercialización</h3>
+        <p data-i18n="p3b">Presentación selectiva, visitas filtradas y un informe de actividad cada semana.</p>
+      </div>
+      <div class="step rv">
+        <span class="num">IV</span>
+        <h3 data-i18n="p4t">Cierre</h3>
+        <p data-i18n="p4b">Negociación, arras y acompañamiento hasta la firma en notaría.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="sim-card">
-      <div class="sim-top">
-        <div class="sim-inputs">
-          <div class="sim-field">
-            <div class="lab"><span>Honorarios que generas al año</span><b id="vGci">150.000 €</b></div>
-            <input type="range" id="sGci" min="60000" max="300000" step="10000" value="150000">
-            <div class="sim-scale"><span>60.000 €</span><span>300.000 €</span></div>
-          </div>
-          <div class="sim-field">
-            <div class="lab"><span>Captaciones en exclusiva</span><b id="vExc">40 %</b></div>
-            <input type="range" id="sExc" min="0" max="100" step="5" value="40">
-            <div class="sim-scale"><span>0 %</span><span>100 %</span></div>
-          </div>
-          <div class="sim-field">
-            <div class="lab"><span>Años en Olara</span><b id="vYears">4 años</b></div>
-            <input type="range" id="sYears" min="1" max="6" step="1" value="4">
-            <div class="sim-scale"><span>1 año</span><span>6 años</span></div>
+<!-- ============ GALERÍA ============ -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="gallery">
+      <figure><div class="ph" data-note="Stock premium · 1200×1500 · Salón / luz natural"></div></figure>
+      <figure class="tall"><div class="ph" data-note="Stock premium · 1200×2700 · Fachada o escalera clásica Madrid"></div></figure>
+      <figure><div class="ph" data-note="Stock premium · 1200×1500 · Detalle material / carpintería"></div></figure>
+      <figure><div class="ph" data-note="Stock premium · 1200×1500 · Terraza o vistas"></div></figure>
+      <figure><div class="ph" data-note="Stock premium · 1200×1500 · Cocina o baño premium"></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZONAS ============ -->
+<section class="band" id="zonas" style="padding-top:0">
+  <div class="wrap">
+    <hr class="rule" style="margin-bottom:clamp(3rem,7vh,5rem)">
+    <div class="sec-head">
+      <div>
+        <hr class="mark">
+        <p class="eyebrow">Dónde trabajamos</p>
+      </div>
+      <h2><span data-i18n="znTitle">Madrid,</span> <em data-i18n="znTitleEm">por barrios.</em></h2>
+    </div>
+    <ul class="zones rv">
+      <li data-mark="1">Salamanca</li>
+      <li>Chamberí</li>
+      <li data-mark="1">Justicia</li>
+      <li>Almagro</li>
+      <li>El Viso</li>
+      <li data-mark="1">Jerónimos</li>
+      <li>Chamartín</li>
+      <li>Retiro</li>
+    </ul>
+    <p class="zones-note" data-i18n="znNote">Trabajamos también fuera de estas zonas cuando el activo lo merece. Pregúntenos.</p>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="band on-light" id="contacto">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-aside">
+        <hr class="mark">
+        <h2><span data-i18n="ctTitle">Empecemos por</span> <em data-i18n="ctTitleEm">la valoración.</em></h2>
+        <p class="lead" data-i18n="ctLead">Cuéntenos qué propiedad tiene y qué necesita. Respondemos en menos de 24 horas laborables.</p>
+
+        <div class="direct">
+          <a href="mailto:info@olara-re.com">
+            <span class="k">Email</span>
+            <span>info@olara-re.com</span>
+          </a>
+          <!-- SUSTITUIR href por el enlace real de Calendly -->
+          <a href="#" data-calendly>
+            <span class="k" data-i18n="ctCal">Agenda</span>
+            <span data-i18n="ctCalV">Reservar una llamada</span>
+          </a>
+          <!-- SUSTITUIR por wa.me/34XXXXXXXXX -->
+          <a href="#" data-wa>
+            <span class="k">WhatsApp</span>
+            <span data-i18n="ctWaV">Escribir por WhatsApp</span>
+          </a>
+          <div>
+            <span class="k" data-i18n="ctZone">Zona</span>
+            <span>Madrid</span>
           </div>
         </div>
+      </div>
 
-        <div class="sim-out">
-          <div class="o-eyebrow">Tu participación, ilustrada</div>
-          <div class="o-row">
-            <div class="o-lab">Tokens devengados al año</div>
-            <div class="o-val mono" id="oTokens" style="font-family:'IBM Plex Mono',monospace;font-size:26px">210</div>
-          </div>
-          <div class="o-row">
-            <div class="o-lab">Participación indicativa acumulada</div>
-            <div class="o-val serif" id="oStake">2,0<small> %</small></div>
-          </div>
-          <div class="o-scen">
-            <div class="o-scen-h">Valor indicativo de tu participación (año 3)</div>
-            <div class="scen-grid">
-              <div class="scen-box"><div class="s-lab">Conservador</div><div class="s-val" id="oCons">20.000 €</div></div>
-              <div class="scen-box base"><div class="s-lab">Base</div><div class="s-val" id="oBase">31.000 €</div></div>
-              <div class="scen-box"><div class="s-lab">Optimista</div><div class="s-val" id="oOpt">42.000 €</div></div>
+      <div>
+        <!-- SUSTITUIR action por el endpoint del formulario (HubSpot / Formspree) -->
+        <form id="form" novalidate>
+          <div class="two">
+            <div class="field">
+              <label for="f-name" data-i18n="fName">Nombre</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-phone" data-i18n="fPhone">Teléfono</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="sim-disc">
-        <b>Cifras puramente ilustrativas.</b> No constituyen promesa de rentabilidad, oferta de valores ni asesoramiento de inversión. El valor real depende del desempeño de la agencia, de la documentación legal definitiva y de la revisión regulatoria (Token City / CNMV). Las condiciones se formalizan en el pacto de socios.
+
+          <div class="field">
+            <label for="f-email" data-i18n="fEmail">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="f-type" data-i18n="fType">Motivo</label>
+            <select id="f-type" name="type">
+              <option data-i18n="fOpt1">Quiero vender una propiedad</option>
+              <option data-i18n="fOpt2">Quiero una valoración</option>
+              <option data-i18n="fOpt3">Inversión o tokenización</option>
+              <option data-i18n="fOpt4">Otro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-msg" data-i18n="fMsg">Su propiedad</label>
+            <textarea id="f-msg" name="message" data-ph-i18n="fMsgPh" placeholder="Zona, metros y estado aproximado"></textarea>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span data-i18n="fConsent">Acepto que Olara RE trate mis datos para responder a esta solicitud, conforme a la política de privacidad.</span>
+          </label>
+
+          <button class="btn btn-solid" type="submit" data-i18n="fSend">Enviar solicitud</button>
+          <p class="form-msg" id="formMsg" role="status"></p>
+        </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REGLAS -->
-<section class="reglas">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="divider-rule"></div>
-      <div class="eyebrow">Cómo funciona, en detalle</div>
-      <h2 class="serif">Todas las dudas, <em>resueltas</em></h2>
-      <p>Un socio serio merece reglas claras. Esto es lo que rige tu participación de principio a fin.</p>
-    </div>
-    <div class="rule-grid">
-      <div class="rule-item">
-        <div class="r-k"><span class="dot"></span><h4>Cómo se gana</h4></div>
-        <p>Por <b>desempeño</b>: facturación y captación de talento. La exclusiva pondera doble; traer un inversor recurrente, triple. Premiamos construir, no calentar la silla.</p>
-      </div>
-      <div class="rule-item">
-        <div class="r-k"><span class="dot"></span><h4>Consolidación anual</h4></div>
-        <p>Cada año es un ciclo. Lo que devengas <b>consolida si sigues activo al cierre</b>. Doble llave: producir y permanecer.</p>
-      </div>
-      <div class="rule-item">
-        <div class="r-k"><span class="dot"></span><h4>Liquidez</h4></div>
-        <p>Tu participación consolidada se recompra en <b>ventanas anuales a precio de fórmula</b>. Equity que se revaloriza, con salida ordenada.</p>
-      </div>
-      <div class="rule-item">
-        <div class="r-k"><span class="dot"></span><h4>Si te vas en buenos términos</h4></div>
-        <p>Conservas todo lo consolidado y <b>Olara te lo recompra</b> a precio de fórmula. Limpio y previsible.</p>
-      </div>
-      <div class="rule-item">
-        <div class="r-k"><span class="dot"></span><h4>Dividendos y exit</h4></div>
-        <p>Participas en la <b>revalorización de la agencia</b> y cobras tu porcentaje si Olara RE se vende. Ese es el verdadero premio del modelo.</p>
-      </div>
-      <div class="rule-item">
-        <div class="r-k"><span class="dot"></span><h4>Responsabilidad limitada</h4></div>
-        <p>Eres socio sin exponerte: <b>nunca respondes de pérdidas</b> con tu patrimonio ni aportas capital. Solo el lado bueno de ser dueño.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PLAZAS + CTA -->
-<section class="plazas" id="solicitar">
-  <div class="wrap">
-    <div class="seal">
-      <div class="seal-ring"><div class="rn serif">VI</div><div class="rt">Plazas</div></div>
-      <div class="seal-cap">Socios Fundadores · Olara RE</div>
-    </div>
-    <h2 class="serif">Buscamos seis socios. <em>No seiscientos.</em></h2>
-    <p>La bolsa de fundadores es la prima de quien llega primero, y se cierra. Si construyes cartera premium en Madrid y quieres dejar de capitalizar a otro, hablemos.</p>
-    <div class="dots6">
-      <span class="d filled"></span><span class="d filled"></span><span class="d"></span>
-      <span class="d"></span><span class="d"></span><span class="d"></span>
-    </div>
-    <a href="mailto:info@olara-re.com?subject=Plaza%20de%20Socio%20Fundador%20%C2%B7%20Olara%20RE" class="btn-gold">Solicita tu plaza de fundador</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div>
-        <div class="logo on-dark">
-          <div class="logo-mark"><span>O</span></div>
-          <div class="logo-text"><b>OLARA</b><small>Real Estate</small></div>
-        </div>
-        <p>Inversión inmobiliaria, intermediación estratégica y desarrollo de oportunidades de alto valor en Madrid. Una marca de Olara Capital.</p>
-      </div>
-      <div class="foot-contact">
-        Madrid · España<br>
-        <a href="mailto:info@olara-re.com">info@olara-re.com</a><br>
-        Programa Socios Fundadores
-      </div>
+  <div class="foot-top">
+    <div>
+      <span class="fallback" style="font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase">Olara <b style="color:var(--gold)">RE</b></span>
+      <p class="tag" data-i18n="ftTag">Agencia inmobiliaria premium en Madrid.</p>
     </div>
-    <p class="foot-disc">
-      <b>Aviso legal.</b> Esta página tiene carácter informativo y de captación profesional. Las cifras, porcentajes y simulaciones son ilustrativas y no constituyen una oferta pública de valores, promesa de rentabilidad ni asesoramiento financiero o de inversión. La participación se instrumenta como acciones tokenizadas (security token) sujetas al marco regulatorio aplicable (CNMV / MiCA) y a la infraestructura de Token City. Las condiciones definitivas —devengo, consolidación, recompra, transmisión y derechos económicos y políticos— se establecen en el pacto de socios y los estatutos de Olara RE, S.L. La fiscalidad de la retribución en especie debe ser validada por asesoramiento especializado antes de cualquier formalización.
+    <nav class="foot-nav">
+      <a href="#servicios" data-i18n="nav1">Servicios</a>
+      <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
+      <a href="#contacto" data-i18n="nav4">Contacto</a>
+      <a href="/socios" data-i18n="ftSocios">Únete como socio</a>
+      <!-- SUSTITUIR por el LinkedIn real -->
+      <a href="#" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+
+  <div class="legal">
+    <p data-i18n="lgOperator">Sitio operado por Olara Capital SL · CIF B26977355 · Calle Fernando VI 21, 28004 Madrid · info@olara-re.com</p>
+    <p style="margin-top:.5rem">
+      <!-- SUSTITUIR por las URLs reales de los textos legales -->
+      <a href="#" data-i18n="lgLegal">Aviso legal</a> ·
+      <a href="#" data-i18n="lgPrivacy">Política de privacidad</a> ·
+      <a href="#" data-i18n="lgCookies">Cookies</a>
     </p>
+    <p style="margin-top:.5rem">© <span id="yr"></span> Olara RE</p>
   </div>
 </footer>
 
+<!-- SUSTITUIR href por wa.me/34XXXXXXXXX -->
+<a class="wa" href="#" data-wa aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.94 1.35-.54.06-1.03.08-1.77-.11-.44-.11-1.01-.3-1.75-.62-3.08-1.33-5.09-4.43-5.24-4.63-.15-.2-1.24-1.65-1.24-3.15s.79-2.24 1.07-2.55c.28-.31.61-.38.82-.38.2 0 .41 0 .59.01.19.01.44-.7.69.53.25.6.85 2.07.93 2.22.07.15.12.33.02.53-.1.2-.19.32-.38.5-.19.18-.29.28-.42.48-.13.2-.27.44-.06.8.21.36.75 1.23 1.6 1.99 1.1.98 2.02 1.29 2.35 1.44.33.15.53.13.72-.08.19-.21.83-.96 1.05-1.29.22-.33.44-.27.73-.16.29.11 1.84.87 2.16 1.02.32.15.53.23.61.36.08.13.08.75-.16 1.43z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
 <script>
-(function(){
-  var fmt=function(n){return new Intl.NumberFormat('es-ES').format(Math.round(n));};
-  var sGci=document.getElementById('sGci'),sExc=document.getElementById('sExc'),sYears=document.getElementById('sYears');
-  var vGci=document.getElementById('vGci'),vExc=document.getElementById('vExc'),vYears=document.getElementById('vYears');
-  var oTokens=document.getElementById('oTokens'),oStake=document.getElementById('oStake');
-  var oCons=document.getElementById('oCons'),oBase=document.getElementById('oBase'),oOpt=document.getElementById('oOpt');
+/* ---------- i18n ---------- */
+const EN = {
+  nav1:"Services", nav2:"How we work", nav3:"Areas", nav4:"Contact",
+  heroEyebrow:"Premium real estate agency · Madrid",
+  h1a:"Selling", h1b:"well", h1c:"is not selling fast.",
+  heroSub:"We market high-value homes in Madrid and structure investment deals. Few properties, direct attention, and a price backed by real data.",
+  cta1:"Request a valuation", cta2:"See services",
+  manTitle:"An exceptional property doesn't need more listings. It needs better judgement.",
+  manBody:"Madrid's premium market doesn't move on listing volume. It moves on how well the asset is prepared, how the price is built, and whether the right buyer ever sees it. We take on few properties at a time because that's the only way to do all three properly.",
+  svcTitle:"Three ways to work", svcTitleEm:"with us.",
+  s1t:"Premium home sales",
+  s1b:"We prepare the asset before it reaches the market, set a price that holds up against real comparables, and present it to a short list of qualified buyers. Photography, floor plan and dossier included.",
+  s1n:"Exclusive mandate. Fees agreed in writing before we start.",
+  s2t:"Valuation",
+  s2b:"A report built on deals actually closed in your area and your property type, not an automated portal range. We tell you what your home is worth and what would change that number.",
+  s2n:"Free, with no mandate required.",
+  s3t:"Investment and tokenisation",
+  s3b:"We analyse real estate investment deals — return, refurbishment cost, exit route — and structure the vehicle, including tokenising the asset when the deal justifies it.",
+  s3n:"Issuance and registry of tokenised assets are always executed through CNMV-authorised entities.",
+  prcTitle:"Four stages.", prcTitleEm:"No surprises in any of them.",
+  p1t:"Valuation", p1b:"We visit the property and hand you the comparables report. You decide whether we continue.",
+  p2t:"Preparation", p2b:"Paperwork, photography, floor plan and dossier. Nothing goes to market half-finished.",
+  p3t:"Marketing", p3b:"Selective presentation, filtered viewings, and an activity report every week.",
+  p4t:"Closing", p4b:"Negotiation, deposit contract and support through to signing at the notary.",
+  znTitle:"Madrid,", znTitleEm:"by neighbourhood.",
+  znNote:"We also work outside these areas when the property deserves it. Just ask.",
+  ctTitle:"Let's start with", ctTitleEm:"the valuation.",
+  ctLead:"Tell us what property you have and what you need. We reply within one working day.",
+  ctCal:"Calendar", ctCalV:"Book a call", ctWaV:"Message on WhatsApp", ctZone:"Area",
+  fName:"Name", fPhone:"Phone", fEmail:"Email", fType:"Reason", fMsg:"Your property",
+  fMsgPh:"Area, size and approximate condition",
+  fOpt1:"I want to sell a property", fOpt2:"I want a valuation",
+  fOpt3:"Investment or tokenisation", fOpt4:"Other",
+  fConsent:"I agree to Olara RE processing my data to respond to this enquiry, in line with the privacy policy.",
+  fSend:"Send enquiry",
+  ftTag:"Premium real estate agency in Madrid.", ftSocios:"Join as a partner",
+  lgOperator:"Site operated by Olara Capital SL · Tax ID B26977355 · Calle Fernando VI 21, 28004 Madrid · info@olara-re.com",
+  lgLegal:"Legal notice", lgPrivacy:"Privacy policy", lgCookies:"Cookies"
+};
 
-  // Referencia ilustrativa: 150.000 € + 40% exclusiva durante 4 años -> 2% de participación.
-  var REF_TOKENS_4Y = (150000/1000)*(1+0.40)*4; // 840
-  var REF_STAKE = 0.02;
-  // Valor indicativo de la empresa (año 3), derivado del BP: EBITDA x múltiplo.
-  var COMPANY = { cons:1044000, base:1566000, opt:2088000 };
+const ES = {};
+document.querySelectorAll('[data-i18n]').forEach(el=>{ ES[el.dataset.i18n] = el.textContent; });
+document.querySelectorAll('[data-ph-i18n]').forEach(el=>{ ES[el.dataset.phI18n] = el.placeholder; });
 
-  function calc(){
-    var gci=+sGci.value, exc=+sExc.value/100, years=+sYears.value;
-    var tokensYr = (gci/1000)*(1+exc);            // puntos/año
-    var tokens4  = tokensYr*years;                 // acumulado
-    var stake    = (tokens4/REF_TOKENS_4Y)*REF_STAKE;
+function setLang(lang){
+  const dict = lang === 'en' ? EN : ES;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v = dict[el.dataset.i18n]; if(v) el.textContent = v;
+  });
+  document.querySelectorAll('[data-ph-i18n]').forEach(el=>{
+    const v = dict[el.dataset.phI18n]; if(v) el.placeholder = v;
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>{
+    b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+  });
+  try{ localStorage.setItem('olara-lang', lang); }catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>{
+  b.addEventListener('click',()=>setLang(b.dataset.lang));
+});
+try{
+  const saved = localStorage.getItem('olara-lang');
+  if(saved === 'en') setLang('en');
+  else if(!saved && (navigator.language||'').slice(0,2) !== 'es') setLang('en');
+}catch(e){}
 
-    vGci.textContent=fmt(gci)+' €';
-    vExc.textContent=Math.round(exc*100)+' %';
-    vYears.textContent=years+(years===1?' año':' años');
-    oTokens.textContent=fmt(tokensYr);
-    oStake.innerHTML=(stake*100).toFixed(1).replace('.',',')+'<small> %</small>';
-    oCons.textContent=fmt(stake*COMPANY.cons)+' €';
-    oBase.textContent=fmt(stake*COMPANY.base)+' €';
-    oOpt.textContent=fmt(stake*COMPANY.opt)+' €';
+/* ---------- nav ---------- */
+const nav = document.getElementById('nav');
+const links = document.getElementById('navLinks');
+const burger = document.getElementById('burger');
+const onScroll = ()=> nav.classList.toggle('solid', window.scrollY > 40);
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+burger.addEventListener('click',()=>{
+  const open = links.classList.toggle('open');
+  nav.classList.toggle('menu-open', open);
+  burger.setAttribute('aria-expanded', String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  links.classList.remove('open'); nav.classList.remove('menu-open');
+  burger.setAttribute('aria-expanded','false'); document.body.style.overflow='';
+}));
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{
+  el.style.transitionDelay = (i % 4) * 80 + 'ms';
+  io.observe(el);
+});
+
+/* ---------- form ---------- */
+/* PENDIENTE: conectar a HubSpot o Formspree. De momento valida y avisa. */
+const form = document.getElementById('form');
+const msg = document.getElementById('formMsg');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  if(!form.checkValidity()){
+    msg.textContent = document.documentElement.lang === 'en'
+      ? 'Please complete the required fields.'
+      : 'Complete los campos obligatorios.';
+    msg.classList.add('show');
+    form.querySelector(':invalid')?.focus();
+    return;
   }
-  [sGci,sExc,sYears].forEach(function(s){s.addEventListener('input',calc);});
-  calc();
-})();
+  msg.textContent = document.documentElement.lang === 'en'
+    ? 'Form not connected yet — configure the endpoint before going live.'
+    : 'Formulario pendiente de conectar — configure el endpoint antes de publicar.';
+  msg.classList.add('show');
+});
+
+document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>

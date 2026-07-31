@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Socios Olara RE — Cobra como agente. Gana como socio.</title>
+<meta name="description" content="Programa de socios-agentes de Olara RE: comisión de hasta el 70% y participación en el capital de la agencia. Seis plazas fundadoras en Madrid.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1B2A;
+  --navy-2:#12233A;
+  --gold:#B8996A;
+  --cream:#F5F1EB;
+  --cream-2:#E4DED4;
+  --muted:#8A94A0;
+  --hair:#26374B;
+  --hair-light:#D9D2C6;
+  --ink-soft:#5C6675;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --pad:clamp(1.5rem,5vw,6rem);
+  --max:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--navy);color:var(--cream);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{font-size:.6875rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.mark{width:64px;height:2px;background:var(--gold);border:0;margin-bottom:1.75rem}
+.rule{height:1px;background:var(--hair);border:0}
+.on-light .rule{background:var(--hair-light)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.375rem var(--pad);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,padding .4s}
+.nav.solid{background:rgba(13,27,42,.94);backdrop-filter:blur(16px);border-bottom-color:var(--hair);padding-top:1rem;padding-bottom:1rem}
+.brand .fallback{font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase}
+.brand .fallback b{color:var(--gold);font-weight:600}
+.nav-cta{font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.75rem 1.5rem;transition:background .3s,color .3s}
+.nav-cta:hover{background:var(--gold);color:var(--navy)}
+@media(max-width:560px){.nav-cta{display:none}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-bottom:clamp(2.5rem,6vh,5rem)}
+.hero-media{position:absolute;inset:0;z-index:0}
+/* SUSTITUIR por foto stock premium 2400x1600 */
+.hero-media .ph-bg{width:100%;height:100%;background:radial-gradient(120% 90% at 74% 10%,#1C3049 0%,#12233A 45%,#0D1B2A 100%)}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.97) 0%,rgba(13,27,42,.6) 50%,rgba(13,27,42,.8) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+h1{font-family:var(--serif);font-weight:300;line-height:1.03;font-size:clamp(2.6rem,7.6vw,6rem);text-wrap:balance;margin-top:1.5rem}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{margin-top:1.75rem;max-width:46ch;font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--cream-2)}
+.anchors{display:flex;flex-wrap:wrap;gap:clamp(1.5rem,5vw,4rem);margin-top:clamp(2rem,4.5vh,3rem);padding-top:2rem;border-top:1px solid var(--hair)}
+.anchor .n{font-family:var(--serif);font-size:clamp(2.25rem,4.6vw,3.5rem);line-height:1;color:var(--gold)}
+.anchor .l{font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.625rem;max-width:18ch}
+.hero-cta{margin-top:clamp(2rem,4vh,2.75rem)}
+
+/* ---------- botones ---------- */
+.btn{display:inline-block;padding:1.0625rem 2.25rem;font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;transition:background .3s,color .3s,border-color .3s}
+.btn-solid{background:var(--gold);color:var(--navy);border:1px solid var(--gold)}
+.btn-solid:hover{background:transparent;color:var(--gold)}
+.on-light .btn-solid{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.on-light .btn-solid:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+
+/* ---------- secciones ---------- */
+.band{padding-top:clamp(4.5rem,12vh,9rem);padding-bottom:clamp(4.5rem,12vh,9rem)}
+.on-light{background:var(--cream);color:var(--navy)}
+h2{font-family:var(--serif);font-weight:300;line-height:1.1;font-size:clamp(1.875rem,4.2vw,3.25rem);text-wrap:balance}
+h2 em{font-style:italic;color:var(--gold)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(1.5rem,5vw,5rem);align-items:end;padding-bottom:clamp(2.5rem,6vh,4rem)}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:1.25rem;align-items:start}}
+
+/* ---------- el techo ---------- */
+.pain p{font-family:var(--serif);font-size:clamp(1.375rem,2.5vw,2.125rem);line-height:1.36;max-width:30ch;font-weight:300}
+.pain .body{font-family:var(--sans);font-size:.9375rem;line-height:1.85;color:var(--muted);max-width:56ch}
+.pain .body strong{color:var(--cream);font-weight:400}
+
+/* ---------- doble palanca ---------- */
+.levers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair-light);border:1px solid var(--hair-light)}
+@media(max-width:820px){.levers{grid-template-columns:1fr}}
+.lever{background:var(--cream);padding:clamp(2rem,4vw,3.25rem)}
+.lever .k{font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.lever h3{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;margin:1.25rem 0 1rem;line-height:1.1}
+.lever p{color:var(--ink-soft);font-size:.9375rem;max-width:42ch}
+
+/* ---------- tabla comisiones ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:.9375rem}
+.tbl th{font-family:var(--sans);font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#8A8375;text-align:left;padding:0 1rem 1rem 0;border-bottom:1px solid var(--hair-light)}
+.tbl th:not(:first-child),.tbl td:not(:first-child){text-align:right;width:6.5rem}
+.tbl td{padding:1.125rem 1rem 1.125rem 0;border-bottom:1px solid var(--hair-light);color:var(--navy)}
+.tbl td:first-child{color:var(--ink-soft);padding-right:2rem}
+.tbl td.pct{font-family:var(--serif);font-size:1.375rem;color:var(--navy)}
+.tbl td.pct.hi{color:var(--gold)}
+.tbl-note{margin-top:1.5rem;font-size:.8125rem;color:var(--ink-soft);max-width:64ch}
+@media(max-width:700px){
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl tr{padding:1.25rem 0;border-bottom:1px solid var(--hair-light)}
+  .tbl td{border:0;padding:.25rem 0;text-align:left!important;width:auto}
+  .tbl td:first-child{font-family:var(--serif);font-size:1.125rem;color:var(--navy);margin-bottom:.5rem}
+  .tbl td[data-l]:not(:first-child)::before{content:attr(data-l) " — ";font-family:var(--sans);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:#8A8375}
+  .tbl td.pct{display:inline-block;width:auto;margin-right:1.5rem;font-size:1rem}
+}
+
+/* ---------- token ---------- */
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:1rem}
+@media(max-width:700px){.facts{grid-template-columns:1fr}}
+.fact{background:var(--navy);padding:clamp(1.75rem,3vw,2.5rem)}
+.fact .no{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--hair)}
+.fact .yes{font-family:var(--serif);font-size:clamp(1.25rem,2vw,1.625rem);color:var(--cream);margin-top:.75rem;line-height:1.25}
+.fact p{font-size:.875rem;color:var(--muted);margin-top:1rem;max-width:40ch}
+
+/* ---------- simulador ---------- */
+.sim{background:var(--navy-2);border:1px solid var(--hair);padding:clamp(1.75rem,4vw,3rem)}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2rem,5vw,4rem)}
+@media(max-width:900px){.sim-grid{grid-template-columns:1fr}}
+.ctrl{margin-bottom:2.25rem}
+.ctrl .top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.875rem}
+.ctrl label{font-size:.6875rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.ctrl output{font-family:var(--serif);font-size:1.5rem;color:var(--gold)}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;background:transparent;height:24px;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--hair)}
+input[type=range]::-moz-range-track{height:1px;background:var(--hair)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);margin-top:-6.5px}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border:0;border-radius:50%;background:var(--gold)}
+.readout{border-top:1px solid var(--hair);padding-top:2rem}
+.readout .big{font-family:var(--serif);font-size:clamp(3.25rem,9vw,5.5rem);line-height:1;color:var(--gold)}
+.readout .big small{font-size:.4em;color:var(--cream-2)}
+.readout .cap{font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.75rem}
+.scen{margin-top:2.25rem;border-top:1px solid var(--hair)}
+.scen div{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.9375rem 0;border-bottom:1px solid var(--hair)}
+.scen .k{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.scen .v{font-family:var(--serif);font-size:1.375rem;color:var(--cream)}
+.disclaimer{margin-top:1.75rem;font-size:.75rem;line-height:1.8;color:var(--muted);border-left:2px solid var(--gold);padding-left:1.125rem}
+
+/* ---------- reglas ---------- */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair-light);border:1px solid var(--hair-light)}
+@media(max-width:900px){.rules{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.rules{grid-template-columns:1fr}}
+.rule-card{background:var(--cream);padding:clamp(1.75rem,3vw,2.25rem);min-height:13rem}
+.rule-card .n{font-family:var(--serif);font-size:1.25rem;color:var(--gold)}
+.rule-card h3{font-family:var(--serif);font-size:1.375rem;font-weight:400;margin:1rem 0 .75rem}
+.rule-card p{font-size:.875rem;color:var(--ink-soft)}
+
+/* ---------- plazas ---------- */
+.seats{text-align:center;padding-top:clamp(4rem,10vh,7rem);padding-bottom:clamp(4rem,10vh,7rem)}
+.seats .mark{margin-left:auto;margin-right:auto}
+.seats .num{font-family:var(--serif);font-size:clamp(5rem,16vw,11rem);line-height:.9;color:var(--gold);font-style:italic}
+.seats h2{margin-top:1.5rem}
+.seats p{color:var(--muted);max-width:46ch;margin:1.5rem auto 2.5rem;font-size:.9375rem}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 2.5rem}
+.foot-top{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;padding-bottom:3rem}
+.foot-top .tag{font-family:var(--serif);font-size:1.125rem;color:var(--cream-2);max-width:30ch;margin-top:1rem;font-weight:300}
+.foot-nav{display:flex;flex-wrap:wrap;gap:1.75rem;align-items:flex-start}
+.foot-nav a{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+.foot-nav a:hover{color:var(--gold)}
+.legal{max-width:var(--max);margin:0 auto;padding-top:2rem;border-top:1px solid var(--hair);font-size:.6875rem;line-height:1.95;color:#5B6878}
+.legal a{text-decoration:underline;text-underline-offset:2px}
+.legal .warn{color:#7C8A9A;margin-bottom:1rem;max-width:88ch}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Olara RE">
+    <!-- SUSTITUIR: <img src="logo-olara-re-crema.svg" alt="Olara RE"> -->
+    <span class="fallback">Olara <b>RE</b></span>
+  </a>
+  <a class="nav-cta" href="#plazas">Solicita tu plaza</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-media" aria-hidden="true"><div class="ph-bg"></div></div>
+  <div class="hero-inner">
+    <p class="eyebrow">Programa de socios · Olara RE Madrid</p>
+    <h1>Cobra como agente.<br><em>Gana como socio.</em></h1>
+    <p class="hero-sub">Comisión de hasta el 70% sobre lo que facturas y participación real en el capital de la agencia que estás construyendo. Seis plazas fundadoras en Madrid.</p>
+
+    <div class="anchors">
+      <div class="anchor">
+        <div class="n">70%</div>
+        <div class="l">de comisión sobre tus honorarios</div>
+      </div>
+      <div class="anchor">
+        <div class="n">15%</div>
+        <div class="l">del capital reservado a los socios-agentes</div>
+      </div>
+      <div class="anchor">
+        <div class="n">VI</div>
+        <div class="l">plazas fundadoras</div>
+      </div>
+    </div>
+
+    <div class="hero-cta"><a class="btn btn-solid" href="#plazas">Solicita tu plaza de fundador</a></div>
+  </div>
+</section>
+
+<!-- ============ EL TECHO ============ -->
+<section class="band pain">
+  <div class="wrap">
+    <hr class="mark">
+    <div class="sec-head" style="padding-bottom:0;align-items:start">
+      <p>Llevas años construyendo una agencia. El problema es que no es la tuya.</p>
+      <div class="body">
+        <p>Captas, negocias, fidelizas y aguantas el mercado malo. La cartera crece, la marca gana reputación, la empresa vale más cada año.</p>
+        <p style="margin-top:1.25rem">Y el día que te vas, te llevas lo mismo que traías: <strong>tu móvil y tu reputación personal</strong>. El valor que creaste se queda en una sociedad de la que no tienes ni una participación.</p>
+        <p style="margin-top:1.25rem">No es un problema de porcentaje de comisión. Es que <strong>el modelo no te da ninguna razón para quedarte</strong> más allá del mes que viene.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOBLE PALANCA ============ -->
+<section class="band on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><hr class="mark"><p class="eyebrow">La propuesta</p></div>
+      <h2>Dos palancas, <em>no una.</em></h2>
+    </div>
+
+    <div class="levers">
+      <div class="lever rv">
+        <div class="k">Palanca I · Cash</div>
+        <h3>Hasta el 70% de tus honorarios</h3>
+        <p>La comisión más alta del mercado en Madrid. Sin fijo: aquí se cobra por lo que se produce. Para el perfil correcto es la mejor oferta de la plaza; para quien necesita la seguridad de una nómina, es la peor. Lo decimos antes, no después.</p>
+      </div>
+      <div class="lever rv">
+        <div class="k">Palanca II · Equity</div>
+        <h3>Participación en el capital</h3>
+        <p>El 15% del capital de la agencia está reservado a los socios-agentes. No es un bonus ni un plan de fidelización: es propiedad. Si Olara RE vale diez veces más dentro de cinco años, tú participas de eso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMISIONES ============ -->
+<section class="band on-light" style="padding-top:0">
+  <div class="wrap">
+    <hr class="rule" style="margin-bottom:clamp(3rem,7vh,5rem)">
+    <div class="sec-head">
+      <div><hr class="mark"><p class="eyebrow">Comisiones</p></div>
+      <h2>La tabla completa. <em>Sin asteriscos.</em></h2>
+    </div>
+
+    <table class="tbl">
+      <thead>
+        <tr><th>Tipo de operación</th><th>Captador</th><th>Vendedor</th><th>Olara</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Activo para reformar — lo compra Olara Capital</td>
+          <td class="pct hi" data-l="Captador">95%</td>
+          <td class="pct" data-l="Vendedor">—</td>
+          <td class="pct" data-l="Olara">5%</td>
+        </tr>
+        <tr>
+          <td>Activo para reformar — lo compra un inversor</td>
+          <td class="pct hi" data-l="Captador">80%</td>
+          <td class="pct" data-l="Vendedor">—</td>
+          <td class="pct" data-l="Olara">20%</td>
+        </tr>
+        <tr>
+          <td>Activo reformado o terminado que tú originas — captas y vendes tú</td>
+          <td class="pct hi" data-l="Captador">70%</td>
+          <td class="pct" data-l="Vendedor">—</td>
+          <td class="pct" data-l="Olara">30%</td>
+        </tr>
+        <tr>
+          <td>Activo reformado o terminado que tú originas — operación compartida</td>
+          <td class="pct hi" data-l="Captador">35%</td>
+          <td class="pct hi" data-l="Vendedor">35%</td>
+          <td class="pct" data-l="Olara">30%</td>
+        </tr>
+        <tr>
+          <td>Activo reformado o terminado captado por Olara Capital</td>
+          <td class="pct" data-l="Captador">20%</td>
+          <td class="pct" data-l="Vendedor">20%</td>
+          <td class="pct" data-l="Olara">60%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="tbl-note">Manda el origen del activo, no su estado. En la última línea, si un mismo socio capta y vende, cobra el 40%. La originación se registra por escrito en el momento de la compra, para que nunca se discuta después.</p>
+  </div>
+</section>
+
+<!-- ============ QUÉ ES EL TOKEN ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><hr class="mark"><p class="eyebrow">El equity, sin humo</p></div>
+      <h2>No es cripto. <em>Son participaciones.</em></h2>
+    </div>
+
+    <div class="facts">
+      <div class="fact rv">
+        <div class="no">Una moneda que sube y baja</div>
+        <div class="yes">Participaciones en el capital de una SL española</div>
+        <p>Tokenizar es solo la forma de registrarlas y administrarlas. Lo que tienes es capital de la agencia, con el respaldo jurídico de siempre.</p>
+      </div>
+      <div class="fact rv">
+        <div class="no">Un mercado abierto donde especular</div>
+        <div class="yes">Transmisión restringida, solo a Olara</div>
+        <p>No se venden a terceros ni a otros agentes. Eso protege la cap table y evita que acabes de socio de alguien que no eliges.</p>
+      </div>
+      <div class="fact rv">
+        <div class="no">Dinero que puedes perder</div>
+        <div class="yes">No aportas capital. Nunca respondes con tu patrimonio</div>
+        <p>El equity se gana produciendo, no comprando. Tu riesgo es el tiempo que inviertes, igual que en cualquier agencia.</p>
+      </div>
+      <div class="fact rv">
+        <div class="no">Un precio de pantalla cada mañana</div>
+        <div class="yes">Ventana de liquidez anual a precio de fórmula</div>
+        <p>El valor está en que la agencia valga más y en una recompra ordenada, no en la especulación diaria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIMULADOR ============ -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><hr class="mark"><p class="eyebrow">Simulador</p></div>
+      <h2>Haz tú los números. <em>Con los tuyos.</em></h2>
+    </div>
+
+    <div class="sim">
+      <div class="sim-grid">
+        <div>
+          <div class="ctrl">
+            <div class="top">
+              <label for="s-fee">Honorarios brutos al año</label>
+              <output id="o-fee">150.000 €</output>
+            </div>
+            <input id="s-fee" type="range" min="50000" max="500000" step="10000" value="150000">
+          </div>
+
+          <div class="ctrl">
+            <div class="top">
+              <label for="s-exc">Operaciones en exclusiva</label>
+              <output id="o-exc">40%</output>
+            </div>
+            <input id="s-exc" type="range" min="0" max="100" step="5" value="40">
+          </div>
+
+          <div class="ctrl" style="margin-bottom:0">
+            <div class="top">
+              <label for="s-yrs">Años en Olara</label>
+              <output id="o-yrs">4</output>
+            </div>
+            <input id="s-yrs" type="range" min="1" max="8" step="1" value="4">
+          </div>
+        </div>
+
+        <div>
+          <div class="readout">
+            <div class="big" id="o-pct">3,00<small>%</small></div>
+            <div class="cap">Participación estimada en Olara RE</div>
+          </div>
+
+          <div class="scen">
+            <div><span class="k">Escenario conservador</span><span class="v" id="o-c">31.200 €</span></div>
+            <div><span class="k">Escenario base</span><span class="v" id="o-b">47.100 €</span></div>
+            <div><span class="k">Escenario optimista</span><span class="v" id="o-o">62.700 €</span></div>
+          </div>
+
+          <p class="disclaimer">
+            Cifras ilustrativas, no una promesa de rentabilidad. El resultado depende de tu producción real y del valor que alcance la agencia, que puede ser mayor o menor que estos escenarios. Las valoraciones parten del plan de negocio a tres años aplicando múltiplos de 4×, 6× y 8× sobre EBITDA. Las condiciones definitivas están en el pacto de socios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGLAS ============ -->
+<section class="band on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><hr class="mark"><p class="eyebrow">Las reglas</p></div>
+      <h2>Seis cosas que conviene <em>saber antes.</em></h2>
+    </div>
+
+    <div class="rules">
+      <div class="rule-card rv">
+        <div class="n">I</div>
+        <h3>Se gana produciendo</h3>
+        <p>El equity no se devenga por antigüedad. Se gana por facturación y por traer talento que produzca. La exclusiva pondera doble; el inversor recurrente, triple.</p>
+      </div>
+      <div class="rule-card rv">
+        <div class="n">II</div>
+        <h3>Consolida una vez al año</h3>
+        <p>Lo acumulado durante el ejercicio consolida al cierre, y solo si sigues activo. Doble llave: producir y permanecer.</p>
+      </div>
+      <div class="rule-card rv">
+        <div class="n">III</div>
+        <h3>Liquidez ordenada</h3>
+        <p>Una ventana anual, precio de fórmula y un tope de recompra por ejercicio. Sin mercado abierto y sin precio diario.</p>
+      </div>
+      <div class="rule-card rv">
+        <div class="n">IV</div>
+        <h3>Si te vas en buenos términos</h3>
+        <p>Conservas lo consolidado y se recompra a precio de fórmula. Lo no consolidado se pierde.</p>
+      </div>
+      <div class="rule-card rv">
+        <div class="n">V</div>
+        <h3>Trabajas como autónomo</h3>
+        <p>Relación mercantil, no laboral. Sin sueldo fijo y sin jefe que te persiga: se responde por producción.</p>
+      </div>
+      <div class="rule-card rv">
+        <div class="n">VI</div>
+        <h3>No pones dinero</h3>
+        <p>No hay aportación ni compra de participaciones. Tampoco respondes con tu patrimonio de las deudas de la sociedad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAZAS ============ -->
+<section class="seats" id="plazas">
+  <div class="wrap">
+    <hr class="mark">
+    <p class="eyebrow">Equipo fundador</p>
+    <div class="num">VI</div>
+    <h2>Seis plazas. <em>Y luego se cierra.</em></h2>
+    <p>La bolsa de fundadores es finita por diseño: se reparte entre los primeros seis. Quien entre después seguirá teniendo acceso al equity, pero no a esta bolsa.</p>
+    <a class="btn btn-solid" href="mailto:info@olara-re.com?subject=Plaza%20de%20socio%20fundador%20-%20Olara%20RE">Solicita tu plaza de fundador</a>
+    <p style="margin-top:2rem;font-size:.8125rem;color:var(--muted)">La primera conversación es con el socio fundador. Sin proceso de selección ni recursos humanos.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <span class="fallback" style="font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase">Olara <b style="color:var(--gold)">RE</b></span>
+      <p class="tag">Agencia inmobiliaria premium en Madrid.</p>
+    </div>
+    <nav class="foot-nav">
+      <a href="/">Web comercial</a>
+      <a href="mailto:info@olara-re.com">info@olara-re.com</a>
+      <!-- SUSTITUIR por el LinkedIn real -->
+      <a href="#" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+
+  <div class="legal">
+    <p class="warn">Esta página describe un programa de incentivos interno dirigido a colaboradores de Olara RE. No constituye una oferta pública de valores ni una recomendación de inversión. Las participaciones son de transmisión restringida y no cotizan en ningún mercado. Las condiciones definitivas, incluidas las de devengo, consolidación, liquidez y salida, son las que figuren en el pacto de socios. El tratamiento fiscal de la retribución está pendiente de confirmación por asesor especializado y puede variar según las circunstancias de cada colaborador.</p>
+    <p>Sitio operado por Olara Capital SL · CIF B26977355 · Calle Fernando VI 21, 28004 Madrid · info@olara-re.com</p>
+    <p style="margin-top:.5rem">
+      <!-- SUSTITUIR por las URLs reales de los textos legales -->
+      <a href="#">Aviso legal</a> ·
+      <a href="#">Política de privacidad</a> ·
+      <a href="#">Cookies</a>
+    </p>
+    <p style="margin-top:.5rem">© <span id="yr"></span> Olara RE</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- nav ---------- */
+const nav = document.getElementById('nav');
+const onScroll = ()=> nav.classList.toggle('solid', window.scrollY > 40);
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{
+  el.style.transitionDelay = (i % 4) * 80 + 'ms';
+  io.observe(el);
+});
+
+/* ================= SIMULADOR =================
+   Calibración (jul 2026) — pool del 15%.
+   Puntos por año = honorarios/1000 × (1 + %exclusiva)
+   Caso de referencia: 150.000€ + 40% exclusiva × 4 años = 840 puntos → 3,00%
+   RATE = 3,00 / 840 = 0,00357142 % por punto.
+   Equivale al 20% del pool, la misma proporción que daba el 2% sobre el pool
+   antiguo del 10%: al ampliar el pool sube la participación, no las reglas.
+
+   TOPE: la bolsa de Dirección (1%) no es repartible entre agentes,
+   así que un socio individual no puede superar el 14%.
+
+   COMPANY: valor de la agencia según BP a 3 años × múltiplo EBITDA 4/6/8.
+   Si cambia el BP, resincronizar aquí.
+   ============================================= */
+const RATE = 3.00 / 840;
+const MAX_PCT = 14;
+const COMPANY = { cons: 1040000, base: 1570000, opt: 2090000 };
+
+const eFee = document.getElementById('s-fee');
+const eExc = document.getElementById('s-exc');
+const eYrs = document.getElementById('s-yrs');
+const oFee = document.getElementById('o-fee');
+const oExc = document.getElementById('o-exc');
+const oYrs = document.getElementById('o-yrs');
+const oPct = document.getElementById('o-pct');
+const oC = document.getElementById('o-c');
+const oB = document.getElementById('o-b');
+const oO = document.getElementById('o-o');
+
+const eur = n => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+const num = n => new Intl.NumberFormat('es-ES').format(n);
+
+function calc(){
+  const fee = +eFee.value;
+  const exc = +eExc.value / 100;
+  const yrs = +eYrs.value;
+
+  const pointsPerYear = (fee / 1000) * (1 + exc);
+  const points = pointsPerYear * yrs;
+  let pct = points * RATE;
+
+  const capped = pct > MAX_PCT;
+  if (capped) pct = MAX_PCT;
+
+  oFee.textContent = eur(fee);
+  oExc.textContent = (+eExc.value) + '%';
+  oYrs.textContent = yrs;
+
+  oPct.innerHTML = pct.toFixed(2).replace('.', ',') + '<small>%</small>';
+  oPct.nextElementSibling.textContent = capped
+    ? 'Participación estimada (máximo del programa)'
+    : 'Participación estimada en Olara RE';
+
+  const f = pct / 100;
+  oC.textContent = eur(COMPANY.cons * f);
+  oB.textContent = eur(COMPANY.base * f);
+  oO.textContent = eur(COMPANY.opt  * f);
+}
+
+[eFee, eExc, eYrs].forEach(el => el.addEventListener('input', calc));
+calc();
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
