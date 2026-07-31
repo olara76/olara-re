@@ -402,12 +402,11 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
             <span>info@olara-re.com</span>
           </a>
           <!-- SUSTITUIR href por el enlace real de Calendly -->
-          <a href="#" data-calendly>
+          <a href="https://calendly.com/olarrea76/30min" target="_blank" rel="noopener">
             <span class="k" data-i18n="ctCal">Agenda</span>
             <span data-i18n="ctCalV">Reservar una llamada</span>
           </a>
-          <!-- SUSTITUIR por wa.me/34XXXXXXXXX -->
-          <a href="#" data-wa>
+          <a href="https://wa.me/34686862017" target="_blank" rel="noopener">
             <span class="k">WhatsApp</span>
             <span data-i18n="ctWaV">Escribir por WhatsApp</span>
           </a>
@@ -477,8 +476,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
       <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
       <a href="#contacto" data-i18n="nav4">Contacto</a>
       <a href="/socios" data-i18n="ftSocios">Únete como socio</a>
-      <!-- SUSTITUIR por el LinkedIn real -->
-      <a href="#" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/company/olararealestate" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </div>
 
@@ -495,7 +493,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
 </footer>
 
 <!-- SUSTITUIR href por wa.me/34XXXXXXXXX -->
-<a class="wa" href="#" data-wa aria-label="WhatsApp">
+<a class="wa" href="https://wa.me/34686862017" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.94 1.35-.54.06-1.03.08-1.77-.11-.44-.11-1.01-.3-1.75-.62-3.08-1.33-5.09-4.43-5.24-4.63-.15-.2-1.24-1.65-1.24-3.15s.79-2.24 1.07-2.55c.28-.31.61-.38.82-.38.2 0 .41 0 .59.01.19.01.44-.7.69.53.25.6.85 2.07.93 2.22.07.15.12.33.02.53-.1.2-.19.32-.38.5-.19.18-.29.28-.42.48-.13.2-.27.44-.06.8.21.36.75 1.23 1.6 1.99 1.1.98 2.02 1.29 2.35 1.44.33.15.53.13.72-.08.19-.21.83-.96 1.05-1.29.22-.33.44-.27.73-.16.29.11 1.84.87 2.16 1.02.32.15.53.23.61.36.08.13.08.75-.16 1.43z"/></svg>
   <span>WhatsApp</span>
 </a>
@@ -596,23 +594,70 @@ document.querySelectorAll('.rv').forEach((el,i)=>{
 });
 
 /* ---------- form ---------- */
-/* PENDIENTE: conectar a HubSpot o Formspree. De momento valida y avisa. */
+/* Envío a HubSpot (Forms API).
+   PORTAL_ID ya es el tuyo. Pega abajo el GUID del formulario que crees en HubSpot. */
+const HS_PORTAL = '147841702';
+const HS_FORM   = 'PEGAR-AQUI-EL-GUID-DEL-FORMULARIO';
+const HS_URL    = `https://api-eu1.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`;
+
 const form = document.getElementById('form');
-const msg = document.getElementById('formMsg');
-form.addEventListener('submit', e=>{
+const msg  = document.getElementById('formMsg');
+const btn  = form.querySelector('button[type=submit]');
+const en   = () => document.documentElement.lang === 'en';
+
+function say(t){ msg.textContent = t; msg.classList.add('show'); }
+
+form.addEventListener('submit', async e=>{
   e.preventDefault();
+
   if(!form.checkValidity()){
-    msg.textContent = document.documentElement.lang === 'en'
-      ? 'Please complete the required fields.'
-      : 'Complete los campos obligatorios.';
-    msg.classList.add('show');
+    say(en() ? 'Please complete the required fields.' : 'Complete los campos obligatorios.');
     form.querySelector(':invalid')?.focus();
     return;
   }
-  msg.textContent = document.documentElement.lang === 'en'
-    ? 'Form not connected yet — configure the endpoint before going live.'
-    : 'Formulario pendiente de conectar — configure el endpoint antes de publicar.';
-  msg.classList.add('show');
+
+  if(HS_FORM.startsWith('PEGAR')){
+    say(en() ? 'Form not connected yet.' : 'Formulario pendiente de conectar.');
+    return;
+  }
+
+  const d = new FormData(form);
+  const payload = {
+    submittedAt: Date.now(),
+    fields: [
+      { name:'firstname', value: d.get('name')    || '' },
+      { name:'phone',     value: d.get('phone')   || '' },
+      { name:'email',     value: d.get('email')   || '' },
+      { name:'message',   value: `${d.get('type')} — ${d.get('message') || ''}` }
+    ],
+    context: { pageUri: location.href, pageName: document.title },
+    legalConsentOptions: {
+      consent: {
+        consentToProcess: true,
+        text: 'Acepto que Olara RE trate mis datos para responder a esta solicitud.'
+      }
+    }
+  };
+
+  btn.disabled = true;
+  say(en() ? 'Sending…' : 'Enviando…');
+
+  try{
+    const r = await fetch(HS_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(!r.ok) throw new Error(r.status);
+    form.reset();
+    say(en() ? 'Thank you. We will be in touch within one working day.'
+             : 'Gracias. Le contactamos en menos de 24 horas laborables.');
+  }catch(err){
+    say(en() ? 'Something went wrong. Please write to info@olara-re.com.'
+             : 'Ha ocurrido un error. Escríbanos a info@olara-re.com.');
+  }finally{
+    btn.disabled = false;
+  }
 });
 
 document.getElementById('yr').textContent = new Date().getFullYear();
