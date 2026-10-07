@@ -3,12 +3,45 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/politica-privacidad", "destination": "/privacidad", "permanent": true },
-    { "source": "/politica-cookies", "destination": "/cookies", "permanent": true },
-    { "source": "/legal/aviso-legal(.html)?", "destination": "/aviso-legal", "permanent": true },
-    { "source": "/legal/politica-privacidad(.html)?", "destination": "/privacidad", "permanent": true },
-    { "source": "/legal/politica-cookies(.html)?", "destination": "/cookies", "permanent": true },
-    { "source": "/hero.jpg", "destination": "/img/hero.jpg", "permanent": true },
-    { "source": "/salon.jpg", "destination": "/img/salon.jpg", "permanent": true }
+    {
+      "source": "/socios",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/politica-privacidad",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/politica-cookies",
+      "destination": "/cookies",
+      "permanent": true
+    },
+    {
+      "source": "/legal/aviso-legal(.html)?",
+      "destination": "/aviso-legal",
+      "permanent": true
+    },
+    {
+      "source": "/legal/politica-privacidad(.html)?",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/legal/politica-cookies(.html)?",
+      "destination": "/cookies",
+      "permanent": true
+    },
+    {
+      "source": "/hero.jpg",
+      "destination": "/img/hero.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/salon.jpg",
+      "destination": "/img/salon.jpg",
+      "permanent": true
+    }
   ]
 }
