@@ -4,10 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de cookies — Olara RE</title>
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{
+  font-family:'Cormorant Garamond';
+  src:url('/fonts/cormorant-garamond.woff2') format('woff2-variations'),
+      url('/fonts/cormorant-garamond.woff2') format('woff2');
+  font-weight:300 500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Cormorant Garamond';
+  src:url('/fonts/cormorant-garamond-italic.woff2') format('woff2-variations'),
+      url('/fonts/cormorant-garamond-italic.woff2') format('woff2');
+  font-weight:300 500;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Inter';
+  src:url('/fonts/inter.woff2') format('woff2-variations'),
+      url('/fonts/inter.woff2') format('woff2');
+  font-weight:300 600;font-style:normal;font-display:swap;
+}
+</style>
 <style>
 :root{
   --navy:#0D1B2A; --gold:#B8996A; --cream:#F5F1EB; --cream-2:#E4DED4;
@@ -22,7 +40,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--navy);
 a{color:inherit}
 .top{background:var(--navy);padding:1.375rem var(--pad)}
 .top .in{max-width:52rem;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.brand{color:var(--cream);font-weight:600;letter-spacing:.2em;font-size:.9375rem;text-transform:uppercase;text-decoration:none}
+.brand img{height:30px;width:auto;display:block}
 .brand b{color:var(--gold)}
 .back{color:var(--muted);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
 .back:hover{color:var(--gold)}
@@ -52,7 +70,7 @@ footer a:hover{color:var(--gold)}
 <body>
 <header class="top">
   <div class="in">
-    <a class="brand" href="/">Olara <b>RE</b></a>
+    <a class="brand" href="/"><img src="/logo-olara-re-horizontal-crema.svg" alt="Olara Real Estate" height="30"></a>
     <a class="back" href="/">Volver a la web</a>
   </div>
 </header>
