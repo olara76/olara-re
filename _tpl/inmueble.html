@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+{{HEAD}}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="/olara.css">
+<link rel="stylesheet" href="/portal.css">
+</head>
+<body class="p-body">
+
+<header class="nav p-nav" id="nav">
+  <a class="brand" href="/" aria-label="Olara RE"><img src="/logo.svg" alt="Olara Real Estate" width="118" height="34"></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/propiedades" aria-current="page" data-i18n="navP">Propiedades</a>
+    <a href="/#servicios" data-i18n="nav1">Servicios</a>
+    <a href="/#proceso" data-i18n="nav2">Cómo trabajamos</a>
+    <a href="/#zonas" data-i18n="nav3">Zonas</a>
+    <a href="/#contacto" data-i18n="nav4">Contacto</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:1.5rem">
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <span>/</span>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<main class="ficha" id="ficha">{{BODY}}</main>
+
+<div class="lb" id="lb" role="dialog" aria-label="Galería">
+  <button class="x" type="button" aria-label="Cerrar">&times;</button>
+  <button class="pv" type="button" aria-label="Anterior">&#8249;</button>
+  <img alt="">
+  <button class="nx" type="button" aria-label="Siguiente">&#8250;</button>
+  <span class="ct"></span>
+</div>
+
+<footer>
+  <div class="legal" style="border-top:0;padding-top:0">
+    <p>Sitio operado por Olara Capital SL · CIF B26977355 · Ctra. de Fuencarral 56, of. 46, 28108 Alcobendas (Madrid) · info@olara-re.com</p>
+    <p style="margin-top:.5rem">La información del inmueble procede del propietario o de su mandatario y puede variar. No constituye oferta vinculante.</p>
+    <p style="margin-top:.5rem"><a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Política de privacidad</a> · <a href="/cookies">Cookies</a></p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+{{DATA}}
+<script src="/portal.js"></script>
+<script>
+(function () {
+  var P = window.OlaraPortal;
+  var links = document.getElementById('navLinks'), burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  burger.addEventListener('click', function () {
+    var open = links.classList.toggle('open'); nav.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : '';
+  });
+  var p = window.__OLARA_ONE__;
+  if (!p) return;
+  var g = P.gallery(p);
+
+  /* mapa */
+  var c = P.coords(p);
+  if (c && window.L && document.getElementById('fmap')) {
+    var m = L.map('fmap', { scrollWheelZoom: false }).setView(c, p.ubicacionAproximada ? 15 : 16);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap' }).addTo(m);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16 }).addTo(m);
+    if (p.ubicacionAproximada) L.circle(c, { radius: 250, color: '#B8996A', weight: 1, fillOpacity: .15 }).addTo(m);
+    else L.marker(c, { icon: L.divIcon({ className: '', html: '<span class="pin">' + (p.precio ? P.short(p.precio) : '·') + '</span>', iconSize: null }) }).addTo(m);
+  }
+
+  /* compartir */
+  var sh = document.getElementById('share');
+  if (sh) sh.addEventListener('click', function () {
+    var data = { title: document.title, url: location.href };
+    if (navigator.share) navigator.share(data).catch(function () {});
+    else if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(function () { sh.textContent = 'Enlace copiado'; });
+  });
+
+  /* galería a pantalla completa */
+  var lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), ct = lb.querySelector('.ct'), idx = 0;
+  function show(i) { idx = (i + g.length) % g.length; lbImg.src = g[idx]; ct.textContent = (idx + 1) + ' / ' + g.length; }
+  document.querySelectorAll('.gal button').forEach(function (b) { b.addEventListener('click', function () { show(+b.dataset.i); lb.classList.add('open'); }); });
+  lb.querySelector('.x').addEventListener('click', function () { lb.classList.remove('open'); });
+  lb.querySelector('.pv').addEventListener('click', function () { show(idx - 1); });
+  lb.querySelector('.nx').addEventListener('click', function () { show(idx + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') lb.classList.remove('open');
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
+</script>
+</body>
+</html>

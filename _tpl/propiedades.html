@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Propiedades en venta en Madrid — Olara RE</title>
+{{HEAD}}
+<meta name="description" content="Vivienda de alto valor en venta en Madrid. Busque en el mapa, filtre por zona, precio y superficie y guarde sus favoritas.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="/olara.css">
+<link rel="stylesheet" href="/portal.css">
+</head>
+<body class="p-body">
+
+<header class="nav p-nav" id="nav">
+  <a class="brand" href="/" aria-label="Olara RE"><img src="/logo.svg" alt="Olara Real Estate" width="118" height="34"></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/propiedades" aria-current="page" data-i18n="navP">Propiedades</a>
+    <a href="/#servicios" data-i18n="nav1">Servicios</a>
+    <a href="/#proceso" data-i18n="nav2">Cómo trabajamos</a>
+    <a href="/#zonas" data-i18n="nav3">Zonas</a>
+    <a href="/#contacto" data-i18n="nav4">Contacto</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:1.5rem">
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <span>/</span>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<form class="filters" id="filters" onsubmit="return false">
+  <input type="search" name="q" placeholder="Calle, barrio o referencia" aria-label="Buscar">
+  <button class="ftoggle" type="button" id="ftoggle" aria-expanded="false">Filtros</button>
+  <select name="zona" aria-label="Zona"><option value="">Todas las zonas</option></select>
+  <select name="min" aria-label="Precio mínimo">
+    <option value="">Precio mín.</option><option>300000</option><option>500000</option><option>750000</option><option>1000000</option><option>1500000</option><option>2000000</option><option>3000000</option>
+  </select>
+  <select name="max" aria-label="Precio máximo">
+    <option value="">Precio máx.</option><option>500000</option><option>750000</option><option>1000000</option><option>1500000</option><option>2000000</option><option>3000000</option><option>5000000</option>
+  </select>
+  <select name="hab" aria-label="Dormitorios">
+    <option value="">Dormitorios</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option>
+  </select>
+  <select name="m2" aria-label="Superficie mínima">
+    <option value="">m² mín.</option><option>60</option><option>80</option><option>100</option><option>150</option><option>200</option><option>300</option>
+  </select>
+  <select name="tipo" aria-label="Tipología"><option value="">Tipología</option></select>
+  <select name="sit" aria-label="Situación"><option value="">Situación</option></select>
+  <label class="chk"><input type="checkbox" name="fav"> Solo guardadas</label>
+  <label class="chk"><input type="checkbox" name="sold"> Ver vendidas</label>
+  <a class="reset" href="/propiedades">Limpiar</a>
+  <div class="view-toggle" role="group" aria-label="Vista">
+    <button type="button" data-view="list" aria-pressed="true">Lista</button>
+    <button type="button" data-view="map" aria-pressed="false">Mapa</button>
+  </div>
+</form>
+
+<main class="split" id="split">
+  <section class="list">
+    <div class="list-head">
+      <div>
+        <h1>Vivienda en venta, <em>Madrid</em></h1>
+        <p class="count" id="count" aria-live="polite">{{COUNT}}</p>
+      </div>
+      <label class="count">Ordenar:
+        <select id="sort" aria-label="Ordenar">
+          <option value="new">Más recientes</option>
+          <option value="pa">Precio: de menor a mayor</option>
+          <option value="pd">Precio: de mayor a menor</option>
+          <option value="m2">€/m²: de menor a mayor</option>
+          <option value="sz">Superficie: de mayor a menor</option>
+          <option value="drop">Bajadas de precio</option>
+        </select>
+      </label>
+    </div>
+    <div class="alert-box" id="alertBox">
+      <button type="button" class="alert-open" id="alertOpen" aria-expanded="false">&#128276; Guardar búsqueda y recibir avisos</button>
+      <form class="alert-form" id="alertForm" novalidate hidden>
+        <p class="alert-sum" id="alertSum"></p>
+        <div class="alert-row">
+          <input type="email" id="alertEmail" placeholder="Su email" autocomplete="email" required aria-label="Email">
+          <button class="btn btn-solid" type="submit">Crear alerta</button>
+        </div>
+        <label class="alert-consent"><input type="checkbox" id="alertOk" required> Acepto que Olara Capital SL (Olara RE) trate mi email para enviarme inmuebles que encajen con esta búsqueda. Puedo darme de baja en cualquier momento. <a href="/privacidad">Privacidad</a>.</label>
+        <p class="alert-msg" id="alertMsg" role="status"></p>
+      </form>
+    </div>
+    <div class="grid" id="grid">{{GRID}}</div>
+  </section>
+  <aside class="map-wrap">
+    <div id="map" role="region" aria-label="Mapa de propiedades"></div>
+    <label class="map-note"><input type="checkbox" id="bbox"> Filtrar al mover el mapa</label>
+  </aside>
+</main>
+
+<footer>
+  <div class="legal" style="border-top:0;padding-top:0">
+    <p>Sitio operado por Olara Capital SL · CIF B26977355 · Ctra. de Fuencarral 56, of. 46, 28108 Alcobendas (Madrid) · info@olara-re.com</p>
+    <p style="margin-top:.5rem">La información de cada inmueble procede del propietario o de su mandatario y puede variar. No constituye oferta vinculante.</p>
+    <p style="margin-top:.5rem"><a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Política de privacidad</a> · <a href="/cookies">Cookies</a></p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+{{DATA}}
+<script src="/portal.js"></script>
+<script>
+(function () {
+  var P = window.OlaraPortal;
+  var form = document.getElementById('filters');
+  var grid = document.getElementById('grid');
+  var countEl = document.getElementById('count');
+  var sortEl = document.getElementById('sort');
+  var bboxEl = document.getElementById('bbox');
+  var split = document.getElementById('split');
+  var all = [], markers = {}, map = null, layer = null, fitted = false;
+
+  /* menú móvil */
+  var links = document.getElementById('navLinks'), burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  burger.addEventListener('click', function () {
+    var open = links.classList.toggle('open'); nav.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  document.getElementById('ftoggle').addEventListener('click', function () {
+    var o = form.classList.toggle('open'); this.setAttribute('aria-expanded', String(o));
+  });
+
+  /* vista lista / mapa en móvil */
+  form.querySelectorAll('[data-view]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var m = b.dataset.view === 'map';
+      split.classList.toggle('show-map', m);
+      form.querySelectorAll('[data-view]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      if (m && map) setTimeout(function () { map.invalidateSize(); }, 50);
+    });
+  });
+
+  /* estado en la URL, para compartir búsquedas */
+  function readURL() {
+    var u = new URLSearchParams(location.search);
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || !u.has(el.name)) return;
+      if (el.type === 'checkbox') el.checked = u.get(el.name) === '1'; else el.value = u.get(el.name);
+    });
+    if (u.has('orden')) sortEl.value = u.get('orden');
+  }
+  function writeURL() {
+    var u = new URLSearchParams();
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name) return;
+      if (el.type === 'checkbox') { if (el.checked) u.set(el.name, '1'); } else if (el.value) u.set(el.name, el.value);
+    });
+    if (sortEl.value !== 'new') u.set('orden', sortEl.value);
+    history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : ''));
+  }
+
+  function fillSelect(name, values) {
+    var sel = form.elements[name];
+    values.filter(Boolean).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a.localeCompare(b, 'es'); })
+      .forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+  }
+
+  function current() {
+    var f = form.elements, q = (f.q.value || '').trim().toLowerCase();
+    var favs = P.favs();
+    var b = (bboxEl.checked && map) ? map.getBounds() : null;
+    var list = all.filter(function (p) {
+      if (!f.sold.checked && p.estado === 'vendida') return false;
+      if (f.zona.value && P.zona(p) !== f.zona.value) return false;
+      if (f.min.value && (p.precio || 0) < +f.min.value) return false;
+      if (f.max.value && p.precio && p.precio > +f.max.value) return false;
+      if (f.hab.value && (p.dormitorios || 0) < +f.hab.value) return false;
+      if (f.m2.value && (p.superficie || 0) < +f.m2.value) return false;
+      if (f.tipo.value && p.tipologia !== f.tipo.value) return false;
+      if (f.sit.value && p.situacion !== f.sit.value) return false;
+      if (f.fav.checked && favs.indexOf(p._id) < 0) return false;
+      if (q && [p.title, p.barrio, p.distrito, p.municipio, p.referencia].join(' ').toLowerCase().indexOf(q) < 0) return false;
+      if (b) { var c = P.coords(p); if (!c || !b.contains(c)) return false; }
+      return true;
+    });
+    var ppm = function (p) { return p.precio && p.superficie ? p.precio / p.superficie : Infinity; };
+    var s = sortEl.value;
+    list.sort(function (a, b2) {
+      if (s === 'pa') return (a.precio || Infinity) - (b2.precio || Infinity);
+      if (s === 'pd') return (b2.precio || 0) - (a.precio || 0);
+      if (s === 'm2') return ppm(a) - ppm(b2);
+      if (s === 'sz') return (b2.superficie || 0) - (a.superficie || 0);
+      if (s === 'drop') return P.drop(b2) - P.drop(a);
+      return 0;
+    });
+    return list;
+  }
+
+  function render() {
+    var list = current();
+    writeURL();
+    if (!all.length) {
+      countEl.textContent = 'Ningún inmueble publicado todavía';
+      grid.innerHTML = '<div class="state"><hr class="mark" style="margin:0 auto 1.5rem"><h2>Nuevas propiedades <em>muy pronto.</em></h2><p>Estamos preparando la primera selección de viviendas. Si busca algo concreto, cuéntenoslo y le avisamos antes de que salga al mercado.</p><button class="btn btn-solid" type="button" onclick="window.__olaraAlert()">Avisarme de nuevas propiedades</button></div>';
+    } else if (!list.length) {
+      countEl.textContent = '0 inmuebles con estos filtros';
+      grid.innerHTML = '<div class="state"><h2>Sin resultados con estos <em>filtros.</em></h2><p>Pruebe a ampliar el precio o la zona. También podemos buscarlo por usted fuera del mercado.</p><a class="btn btn-solid" href="/propiedades">Ver todas</a></div>';
+    } else {
+      countEl.textContent = list.length + (list.length === 1 ? ' inmueble' : ' inmuebles');
+      grid.innerHTML = list.map(P.card).join('');
+    }
+    drawPins(list);
+  }
+
+  /* mapa */
+  function initMap() {
+    if (!window.L) return;
+    map = L.map('map', { zoomControl: true, scrollWheelZoom: true }).setView([40.4268, -3.6880], 13); window.__olaraMap = map;
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap' }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16 }).addTo(map);
+    layer = L.layerGroup().addTo(map);
+    map.on('moveend', function () { if (bboxEl.checked) render(); });
+  }
+  function drawPins(list) {
+    if (!map) return;
+    layer.clearLayers(); markers = {};
+    var pts = [];
+    list.forEach(function (p) {
+      var c = P.coords(p); if (!c) return;
+      pts.push(c);
+      var icon = L.divIcon({ className: '', html: '<span class="pin' + (p.ubicacionAproximada ? ' approx' : '') + '" data-id="' + P.esc(p._id) + '">' + (p.precio ? P.short(p.precio) : '·') + '</span>', iconSize: null });
+      var g = P.gallery(p)[0];
+      var m = L.marker(c, { icon: icon, riseOnHover: true }).bindPopup(
+        '<a class="pop" href="' + P.link(p) + '">' + (g ? '<img src="' + P.esc(P.thumb(g, 480, 360)) + '" alt="">' : '') +
+        '<div><b>' + (p.precio ? P.eur(p.precio) : 'Precio a consultar') + '</b><span>' + P.facts(p) + '</span><br><span>' + P.esc(P.zona(p)) + '</span></div></a>');
+      m.addTo(layer); markers[p._id] = m;
+    });
+    if (!fitted && pts.length && !bboxEl.checked) { map.fitBounds(pts, { padding: [40, 40], maxZoom: 15 }); fitted = true; }
+  }
+  function highlight(id, on) {
+    var pin = document.querySelector('.pin[data-id="' + CSS.escape(id) + '"]');
+    if (pin) pin.classList.toggle('hl', on);
+  }
+
+  grid.addEventListener('mouseover', function (e) { var c = e.target.closest('.card'); if (c) highlight(c.dataset.id, true); });
+  grid.addEventListener('mouseout', function (e) { var c = e.target.closest('.card'); if (c) highlight(c.dataset.id, false); });
+  grid.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-fav]'); if (!b) return;
+    e.preventDefault();
+    var on = P.toggleFav(b.dataset.fav);
+    b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));
+    if (form.elements.fav.checked) render();
+  });
+  form.addEventListener('input', render);
+  form.addEventListener('change', render);
+  sortEl.addEventListener('change', render);
+  bboxEl.addEventListener('change', render);
+
+  initMap();
+  P.fetchAll().then(function (items) {
+    all = items;
+    fillSelect('zona', all.map(P.zona));
+    fillSelect('tipo', all.map(function (p) { return p.tipologia; }));
+    fillSelect('sit', all.map(function (p) { return p.situacion; }));
+    readURL();
+    render();
+  }).catch(function (err) {
+    countEl.textContent = 'No se han podido cargar los inmuebles';
+    grid.innerHTML = '<div class="state"><h2>Algo no ha ido <em>bien.</em></h2><p>No hemos podido cargar el listado en este momento. Inténtelo de nuevo en unos minutos o escríbanos a info@olara-re.com.</p></div>';
+    console.error(err);
+  });
+})();
+/* alertas de búsqueda → Wix Forms («Alertas de búsqueda») */
+(function () {
+  var P = window.OlaraPortal;
+  var open = document.getElementById('alertOpen'), f = document.getElementById('alertForm');
+  var sum = document.getElementById('alertSum'), m = document.getElementById('alertMsg');
+  var L = { q: 'Texto', zona: 'Zona', min: 'Precio mín.', max: 'Precio máx.', hab: 'Hab. mín.', m2: 'm² mín.', tipo: 'Tipo', sit: 'Situación', sold: 'Incluir vendidas', sort: 'Orden', fav: 'Favoritos' };
+  function crit() {
+    var u = new URLSearchParams(location.search), out = [];
+    u.forEach(function (v, k) { if (v && k !== 'fav' && k !== 'sort') out.push((L[k] || k) + ': ' + v); });
+    return out;
+  }
+  function show() {
+    var c = crit();
+    sum.textContent = c.length ? 'Le avisaremos de inmuebles con: ' + c.join(' · ') : 'Sin filtros: le avisaremos de cualquier inmueble nuevo en venta.';
+    f.hidden = false; open.setAttribute('aria-expanded', 'true');
+    document.getElementById('alertEmail').focus();
+  }
+  window.__olaraAlert = function () { show(); document.getElementById('alertBox').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+  open.addEventListener('click', function () { if (f.hidden) show(); else { f.hidden = true; open.setAttribute('aria-expanded', 'false'); } });
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!f.checkValidity()) { m.textContent = 'Indique un email válido y acepte el tratamiento.'; return; }
+    var btn = f.querySelector('button[type=submit]'); btn.disabled = true; m.textContent = 'Guardando…';
+    var c = crit();
+    P.submitForm('alertas', {
+      email_9aacec: document.getElementById('alertEmail').value.trim(),
+      busqueda_3cfeaf: (c.length ? c.join(' | ') : 'Cualquier inmueble') + ' || ' + location.href
+    }).then(function () {
+      f.reset(); m.textContent = 'Alerta creada. Le escribiremos cuando entre un inmueble que encaje.';
+    }).catch(function () {
+      m.textContent = 'No se ha podido guardar. Escríbanos a info@olara-re.com.';
+    }).then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>

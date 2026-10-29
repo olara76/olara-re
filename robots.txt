@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /socios
+Disallow: /api/
 
 Sitemap: https://www.olara-re.com/sitemap.xml

@@ -1,24 +1,128 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/page.js": {
+      "includeFiles": "{_tpl/**,portal.js}",
+      "maxDuration": 15
+    }
+  },
   "redirects": [
-    { "source": "/politica-privacidad", "destination": "/privacidad", "permanent": true },
-    { "source": "/politica-cookies", "destination": "/cookies", "permanent": true },
-    { "source": "/legal/aviso-legal(.html)?", "destination": "/aviso-legal", "permanent": true },
-    { "source": "/legal/politica-privacidad(.html)?", "destination": "/privacidad", "permanent": true },
-    { "source": "/legal/politica-cookies(.html)?", "destination": "/cookies", "permanent": true },
-    { "source": "/hero.jpg", "destination": "/img/hero.jpg", "permanent": true },
-    { "source": "/salon.jpg", "destination": "/img/salon.jpg", "permanent": true }
+    {
+      "source": "/politica-privacidad",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/politica-cookies",
+      "destination": "/cookies",
+      "permanent": true
+    },
+    {
+      "source": "/legal/aviso-legal(.html)?",
+      "destination": "/aviso-legal",
+      "permanent": true
+    },
+    {
+      "source": "/legal/politica-privacidad(.html)?",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/legal/politica-cookies(.html)?",
+      "destination": "/cookies",
+      "permanent": true
+    },
+    {
+      "source": "/hero.jpg",
+      "destination": "/img/hero.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/salon.jpg",
+      "destination": "/img/salon.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/inmueble",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "(?<id>.*)"
+        }
+      ],
+      "destination": "/propiedades/:id",
+      "permanent": true
+    },
+    {
+      "source": "/inmueble",
+      "destination": "/propiedades",
+      "permanent": true
+    },
+    {
+      "source": "/_tpl/(.*)",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/propiedades",
+      "destination": "/api/page?r=list"
+    },
+    {
+      "source": "/propiedades/:slug",
+      "destination": "/api/page?r=one&slug=:slug"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/page?r=sitemap"
+    }
   ],
   "headers": [
     {
       "source": "/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/img/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "missing": [
+        {
+          "type": "host",
+          "value": "(www\\.)?olara-re\\.com"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
     }
-  ]
+  ],
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
