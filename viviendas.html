@@ -12,6 +12,7 @@
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/viviendas.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
 <style>
 .intro{padding-top:46px;padding-bottom:26px}
 .intro p.sub{color:var(--mute);margin-top:12px;max-width:620px;font-size:15px}
@@ -42,6 +43,8 @@
 .pin:after{content:"";position:absolute;left:50%;bottom:-5px;margin-left:-5px;border:5px solid transparent;border-bottom:0;border-top-color:var(--ink)}
 .pin.on{background:var(--gold)}.pin.on:after{border-top-color:var(--gold)}
 .leaflet-div-icon{background:none;border:0}
+.clu{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font:600 12px var(--sans);border:3px solid rgba(184,153,106,.75)}
+[hidden]{display:none!important}
 .empty{padding:60px 0;color:var(--mute)}
 .more{display:block;margin:34px auto 0}
 .mapbtn{display:none}
@@ -105,6 +108,7 @@
 </div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const eur=n=>n==null?'':n.toLocaleString('es-ES')+' €';
@@ -115,7 +119,7 @@ const PAGE=24;
 // Mapa
 const map=L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([40.43,-3.69],13);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap',maxZoom:16}).addTo(map);
-const layer=L.layerGroup().addTo(map);
+const layer=L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:45,spiderfyOnMaxZoom:true,iconCreateFunction:c=>L.divIcon({className:'',html:`<span class="clu">${c.getChildCount()}</span>`,iconSize:[38,38]})}).addTo(map);
 const pins={};
 let boundsFilter=false;
 
