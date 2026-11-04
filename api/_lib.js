@@ -74,7 +74,7 @@ function norm(p) {
 
 async function list() {
   const j = await getJSON(`${API}?page=1&limit=10000&lang=es`);
-  return (j.data || []).filter(p => !isOff(p)).map(norm);
+  return (j.data || []).filter(p => !isOff(p)).map(norm).map(x => { delete x.num; return x; });
 }
 
 async function one(id) {
@@ -92,6 +92,7 @@ async function one(id) {
   const desc = (p.gallery || []).map(g => g.description).find(Boolean) || p.description || '';
   base.images = gallery.length ? gallery : (base.cover ? [base.cover] : []);
   base.desc = scrub(desc, base.street, base.num);
+  delete base.num;
   return base;
 }
 

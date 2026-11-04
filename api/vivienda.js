@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
 <link rel="stylesheet" href="/viviendas.css">
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
 <style>
-.crumb{padding:26px 0 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.crumb{padding-top:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .crumb a{text-decoration:none}
 .gal{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:230px;gap:8px;margin-top:20px}
 .gal button{border:0;padding:0;background:var(--soft);overflow:hidden;cursor:zoom-in;position:relative}
@@ -131,7 +131,7 @@ document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classL
 ${p.lat && p.lng ? `<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const m=L.map('map',{scrollWheelZoom:false,zoomControl:true}).setView([${p.lat},${p.lng}],15);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap · © CARTO',maxZoom:18}).addTo(m);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap',maxZoom:16}).addTo(m);
 L.circle([${p.lat},${p.lng}],{radius:180,color:'#B8996A',weight:1,fillColor:'#B8996A',fillOpacity:.25}).addTo(m);
 </script>` : ''}
 </body></html>`;

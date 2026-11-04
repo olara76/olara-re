@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/viviendas.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-.intro{padding:46px 0 26px}
+.intro{padding-top:46px;padding-bottom:26px}
 .intro p.sub{color:var(--mute);margin-top:12px;max-width:620px;font-size:15px}
 .bar{position:sticky;top:72px;z-index:15;background:var(--paper);border-top:1px solid var(--gold);border-bottom:1px solid var(--line)}
 .bar .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
@@ -114,7 +114,7 @@ const PAGE=24;
 
 // Mapa
 const map=L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([40.43,-3.69],13);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap · © CARTO',maxZoom:18}).addTo(map);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap',maxZoom:16}).addTo(map);
 const layer=L.layerGroup().addTo(map);
 const pins={};
 let boundsFilter=false;
