@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/viviendas/:id", "destination": "/api/vivienda?id=:id" },
+    { "source": "/sitemap-viviendas.xml", "destination": "/api/sitemap-viviendas" }
+  ],
   "redirects": [
     { "source": "/politica-privacidad", "destination": "/privacidad", "permanent": true },
     { "source": "/politica-cookies", "destination": "/cookies", "permanent": true },
