@@ -1,0 +1,25 @@
+@font-face{font-family:'Cormorant Garamond';src:url('/fonts/cormorant-garamond.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Inter';src:url('/fonts/inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{--ink:#0D1B2A;--paper:#FBF9F5;--soft:#F5F1EB;--line:#D9D2C6;--mute:#5C6675;--gold:#B8996A;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.55}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+.top{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
+.top img{width:128px;height:auto}
+.top nav{display:flex;gap:28px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.top nav a{text-decoration:none}
+.top nav a.on{color:var(--gold)}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+h1.serif{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,56px);line-height:1.08}
+h1.serif em{color:var(--gold)}
+.badge{position:absolute;top:12px;left:12px;background:var(--paper);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;font-weight:600}
+.badge.gold{background:var(--gold);color:#fff}
+.btn{display:inline-block;text-align:center;background:var(--ink);color:#fff;text-decoration:none;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:16px 22px;border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.btn.ghost{background:none;color:var(--ink)}
+footer.ft{border-top:1px solid var(--line);padding:34px 0 46px;margin-top:80px;font-size:11px;color:var(--mute)}
+footer.ft .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer.ft a{color:var(--mute)}
+@media(max-width:700px){.top nav{gap:16px;font-size:11px}.wrap{padding:0 18px}}
