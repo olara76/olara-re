@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>Selección privada · Olara Real Estate</title>
+<link rel="preload" href="/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/logo-olara-simbolo-navy.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:'Cormorant Garamond';src:url('/fonts/cormorant-garamond.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Inter';src:url('/fonts/inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{--ink:#0D1B2A;--paper:#FBF9F5;--soft:#F5F1EB;--line:#D9D2C6;--mute:#5C6675;--gold:#B8996A;--serif:'Cormorant Garamond',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.55}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
+.logo{font-weight:700;letter-spacing:.32em;font-size:15px}
+.logo small{display:block;font-weight:400;letter-spacing:.42em;font-size:9px;color:var(--mute);margin-top:2px}
+.tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.hero{padding:88px 0 56px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-.01em;max-width:820px}
+.hero h1 b{font-weight:500;font-style:italic;color:var(--gold)}
+.hero p{margin-top:22px;max-width:620px;color:var(--mute);font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gold);border-bottom:1px solid var(--line);margin-top:48px}
+.kpi{padding:22px 0}
+.kpi+.kpi{padding-left:24px;border-left:1px solid var(--line)}
+.kpi span{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.kpi strong{display:block;font-family:var(--serif);font-size:32px;font-weight:500;margin-top:6px}
+.section-h{display:flex;justify-content:space-between;align-items:end;margin:72px 0 28px}
+.section-h h2{font-weight:500;font-size:13px;letter-spacing:.26em;text-transform:uppercase}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid var(--line);padding:8px 14px;cursor:pointer;color:var(--ink)}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:40px 28px}
+.card{cursor:pointer}
+.card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--soft);position:relative}
+.card .ph img{transition:transform .8s ease}
+.card:hover .ph img{transform:scale(1.04)}
+.badge{position:absolute;top:14px;left:14px;background:var(--paper);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;font-weight:600}
+.card .meta{padding-top:16px}
+.card .zone{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:25px;margin-top:4px}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+.card .price{font-size:18px;font-weight:600}
+.card .specs{font-size:12px;color:var(--mute)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:500;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);text-align:left;padding:12px 10px;border-bottom:1px solid var(--ink)}
+td{padding:14px 10px;border-bottom:1px solid var(--line)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--soft)}
+.tablewrap{overflow-x:auto}
+.note{font-size:11px;color:var(--mute);margin-top:14px}
+/* detail */
+.modal{position:fixed;inset:0;background:var(--paper);z-index:50;overflow-y:auto;display:none}
+.modal.open{display:block}
+.mbar{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:2}
+.mbar .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.mbar button{font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:none;border:none;cursor:pointer;color:var(--ink)}
+.gal{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:240px;gap:8px;margin-top:28px}
+.gal.n3{grid-template-columns:2fr 1fr}
+.gal.n4 div:last-child{grid-column:span 2}
+.gal div{overflow:hidden;background:var(--soft);cursor:zoom-in}
+.gal div:first-child{grid-row:span 2}
+.dhead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:36px 0 8px;flex-wrap:wrap}
+.dhead h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,44px);line-height:1.1}
+.dhead .dp{text-align:right}
+.dhead .dp strong{font-size:30px;font-weight:600;display:block}
+.dhead .dp span{font-size:12px;color:var(--mute)}
+.dgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:56px;margin:40px 0 80px}
+.dgrid p{font-size:15px;margin-bottom:16px;color:#2a2a2a}
+.lead{font-size:18px!important;font-weight:300;color:var(--ink)!important}
+.facts{border-top:1px solid var(--gold)}
+.facts div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.facts div span:first-child{color:var(--mute)}
+.cta{margin-top:28px;display:block;text-align:center;background:var(--ink);color:#fff;text-decoration:none;font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:18px}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:60;display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:88vh;width:auto;height:auto;object-fit:contain}
+.lb button{position:absolute;background:none;border:none;color:#fff;font-size:30px;cursor:pointer;padding:20px;font-family:inherit}
+.lb .x{top:10px;right:16px}.lb .p{left:10px}.lb .nx{right:10px}
+footer{border-top:1px solid var(--line);padding:36px 0 48px;margin-top:90px;font-size:11px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi:nth-child(3){padding-left:0;border-left:none}.dgrid{grid-template-columns:1fr;gap:32px}.gal{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.gal div:first-child{grid-column:span 2;grid-row:span 2}.grid{grid-template-columns:1fr}}
+@media print{.filters,.mbar button,.cta{display:none}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <img src="/logo-olara-re-horizontal-navy.svg" alt="Olara Real Estate" width="128" height="42" style="width:128px;height:auto">
+  <div class="tag">Selección privada · Noviembre 2026</div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Siete residencias <b>prime</b> en Salamanca, Justicia y Retiro</h1>
+    <p>Una selección hecha para usted: viviendas exteriores de entre 150 y 361 m², todas ya reformadas o terminando la reforma. La mayoría se entregan amuebladas y equipadas.</p>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <div class="section-h">
+    <h2>Activos</h2>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="section-h"><h2>Comparativa</h2></div>
+  <div class="tablewrap"><table id="tbl"></table></div>
+  <p class="note">Precios de venta en euros, sin impuestos ni gastos de compraventa. Superficies útiles. La información puede cambiar sin previo aviso y no tiene valor contractual.</p>
+</main>
+
+<div class="modal" id="modal">
+  <div class="mbar"><div class="wrap">
+    <img src="/logo-olara-re-horizontal-navy.svg" alt="Olara Real Estate" width="128" height="42" style="width:128px;height:auto">
+    <button onclick="closeD()">Cerrar ✕</button>
+  </div></div>
+  <div class="wrap" id="detail"></div>
+</div>
+
+<div class="lb" id="lb">
+  <button class="x" onclick="lbClose()">✕</button>
+  <button class="p" onclick="lbGo(-1)">‹</button>
+  <img id="lbimg" alt="">
+  <button class="nx" onclick="lbGo(1)">›</button>
+</div>
+
+<footer><div class="wrap">
+  <div><strong style="color:var(--ink);letter-spacing:.2em">OLARA REAL ESTATE</strong><br>Carretera de Fuencarral 56, of. 46 · 28108 Alcobendas (Madrid)</div>
+  <div>Documento confidencial preparado para uso exclusivo del destinatario.<br>Prohibida su difusión.</div>
+</div></footer>
+
+<script>
+const P=[
+{id:"argensola",code:"AXIS",street:"Calle Argensola",zone:"Justicia · Centro",area:"Justicia",price:6550000,m2:361,bed:4,bath:5,floor:"2ª",orient:"Noreste",year:"1900",status:"Reformada",garage:false,storage:false,terrace:false,
+lead:"Planta noble en un edificio clásico de 1900, con 361 m² pensados para vivir, trabajar y recibir.",
+desc:["La zona de día encadena dos salones, comedor, cocina abierta y lounge bar. Cada espacio tiene su propio carácter y todos se comunican entre sí. Cinco balcones dan luz natural a toda la vivienda.","Tiene cuatro dormitorios (dos con vestidor), cinco baños completos, aseo de cortesía y despacho independiente. Se entrega amueblada, con suelo radiante, climatización por conductos, domótica, chimenea y portería."],
+extras:"Despacho · 5 balcones · Chimenea · Suelo radiante · Domótica · Portería",
+imgs:["https://media.bestflat.com/images-pro/15965.jpg","https://media.bestflat.com/images-pro/15968.jpg","https://media.bestflat.com/images-pro/15932.jpg","https://media.bestflat.com/images-pro/15898.jpg"]},
+{id:"maria-de-molina",code:"VERUM",street:"Calle María de Molina",zone:"Castellana · Salamanca",area:"Salamanca",price:5359000,m2:339,bed:5,bath:5,floor:"13ª",orient:"Sureste",year:"—",status:"Reformada",garage:true,storage:true,terrace:false,
+lead:"Planta 13 con vistas panorámicas de 360º sobre Madrid y 339 m² terminados al más alto nivel.",
+desc:["La zona social reúne salón, comedor y dos cocinas abiertas equipadas, además de un rincón de café y chimenea. Hay cinco dormitorios dobles, cada uno con su baño, cuatro vestidores, aseo de cortesía, zona de servicio y cuarto de lavado.","Se entrega amueblada, con suelo radiante, climatización por aerotermia, domótica DALI y sonido Bang & Olufsen. Incluye portería, trastero y tres plazas de garaje."],
+extras:"Vistas 360º · 3 plazas de garaje · Trastero · Aerotermia · Domótica DALI · B&O",
+imgs:["https://media.bestflat.com/images-pro/14568.jpg","https://media.bestflat.com/images-pro/14529.jpg","https://media.bestflat.com/images-pro/14469.jpg","https://media.bestflat.com/images-pro/14476.jpg","https://media.bestflat.com/images-pro/14505.jpg"]},
+{id:"serrano",code:"EXUO",street:"Calle Serrano",zone:"Castellana · Salamanca",area:"Salamanca",price:4900000,m2:274,bed:4,bath:4,floor:"7ª",orient:"Este",year:"—",status:"Reformada",garage:true,storage:false,terrace:true,
+lead:"Séptima planta exterior en Serrano, con dos terrazas y un diseño en el que no sobra nada.",
+desc:["Salón, comedor y cocina abierta forman un único espacio continuo que se abre a dos terrazas con vegetación y vistas. Tiene cuatro dormitorios, cuatro baños completos, aseo de cortesía y cuarto de lavado, sin pasillos innecesarios.","Se entrega amueblada y equipada, con cocina de diseño, climatización, domótica, portería y plaza de garaje."],
+extras:"2 terrazas · Plaza de garaje · Domótica · Portería · Amueblada",
+imgs:["https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb8f0c91ef/SERRANO_87_7B_SALON_01_8e59a777fac1003b5ee6e264224497a2.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb8f0c91ef/SERRANO_87_7B_SALON_03_10c708c3fa40ac01604c084aa1967033.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb8f0c91ef/SERRANO_87_7B_TERRAZA_01_47280c693ab2858766fea7cb6c545801.jpg"]},
+{id:"diego-de-leon",code:"",street:"Calle Diego de León",zone:"Lista · Salamanca",area:"Salamanca",price:3339000,m2:293,bed:5,bath:5,floor:"3ª",orient:"Suroeste",year:"1965",status:"Reformada",garage:false,storage:true,terrace:true,
+lead:"293 m² exteriores orientados al suroeste en el barrio de Lista. Reformada y lista para entrar a vivir.",
+desc:["Tiene un amplio salón-comedor con dos balcones y cocina equipada. La zona de noche tiene cinco dormitorios y cinco baños, más aseo, cuarto de servicio y cuarto de lavado.","Se entrega amueblada, con aire acondicionado por conductos, calefacción central, domótica y trastero."],
+extras:"5 dormitorios · Cuarto de servicio · 2 balcones · Trastero · Domótica",
+imgs:["https://media.bestflat.com/images-pro/14748.jpg","https://media.bestflat.com/images-pro/14786.jpg","https://media.bestflat.com/images-pro/14760.jpg","https://media.bestflat.com/images-pro/14749.jpg","https://media.bestflat.com/images-pro/14746.jpg"]},
+{id:"ortega-y-gasset",code:"",street:"Calle José Ortega y Gasset",zone:"Milla de Oro · Salamanca",area:"Salamanca",price:3039000,m2:172,bed:3,bath:3,floor:"2ª",orient:"Suroeste",year:"1975",status:"En fase final de reforma",garage:true,storage:false,terrace:true,
+lead:"En plena Milla de Oro: 172 m² exteriores en la última fase de la reforma, con plaza de garaje.",
+desc:["Ahora mismo se está amueblando y decorando. Tendrá salón-comedor con balcón, cocina equipada y cuarto de lavado independiente. La zona de noche tendrá tres dormitorios y tres baños.","Se entregará amueblada, con aire acondicionado, calefacción central, domótica y plaza de garaje."],
+extras:"Milla de Oro · Plaza de garaje · Balcón · Domótica",
+imgs:["https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7b524000/ba__o_3_jos___ortega_y_gasset_12_2_A_8c9318b06bc328cb2582e440adc09e67.png","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7b524000/ba__o_3_2_jos___ortega_y_gasset_12_2_A_96228800103f38ddda70fb55cb83b59d.png","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7b524000/ba__o_2_jos___ortega_y_gasset_12_2_A_af1298c1905012767e781ef3bfd6a0cb.png","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7b524000/ba__o_2_2_jos___ortega_y_gasset_12_2_A_7bc164811b37c784e4bea20a827935fa.png","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7b524000/ba__o_1_2_jos___ortega_y_gasset_12_2_A_75275640f4921a28bc35d4989b16961a.png"]},
+{id:"juan-bravo",code:"",street:"Calle Juan Bravo",zone:"Salamanca",area:"Salamanca",price:2869000,m2:196,bed:4,bath:4,floor:"1ª",orient:"Suroeste",year:"—",status:"—",garage:false,storage:false,terrace:false,
+lead:"196 m² exteriores orientados al suroeste en Juan Bravo, con cuatro dormitorios en suite.",
+desc:["La superficie da para separar bien la zona de día (salón-comedor y cocina) de la zona de descanso, con cuatro dormitorios y cuatro baños. Es una distribución muy cómoda para familias.","Tiene aire acondicionado, calefacción y ascensor."],
+extras:"4 dormitorios · 4 baños · Orientación suroeste",
+imgs:["https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7f427ae1/JUAN_BRAVO_25_1A_DORMITORIO_3_03_3fadc1381117f2cad83f866fba46170e.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7f427ae1/JUAN_BRAVO_25_1A_DORMITORIO_2_04_8cdec42960a571f2e5673c3640616be0.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7f427ae1/JUAN_BRAVO_25_1A_DORMITORIO_2_01_f357d26c920adaeccf1ba89619db41fb.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7f427ae1/JUAN_BRAVO_25_1A_DORMITORIO_2_06_242c5a6a3eada4be2920f01d2991d385.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c391-7362-8d4e-02fb7f427ae1/JUAN_BRAVO_25_1A_DORMITORIO_1_15_aef192a736dceffdecb1ea7cd2e4ee15.jpg"]},
+{id:"odonnell",code:"",street:"Calle O'Donnell",zone:"Ibiza · Retiro",area:"Retiro",price:2079000,m2:150,bed:3,bath:3,floor:"5ª",orient:"Norte",year:"1969",status:"En reforma",garage:true,storage:false,terrace:true,
+lead:"Junto al Retiro: quinta planta exterior de 150 m², con terraza y plaza de garaje.",
+desc:["Se está reformando con una distribución moderna: salón-comedor, cocina equipada, tres dormitorios y tres baños. Tiene un espacio exterior y la reforma añade un balcón.","Se entregará amueblada, con aire acondicionado por conductos, calefacción central y plaza de garaje."],
+extras:"Terraza · Plaza de garaje · Junto al Retiro",
+imgs:["https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c392-7262-94b5-7eb7df3f5c93/ODONNELL_46_5F_TERRAZA_002_4fef9bafc6898b04eda2abca3422341a.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c392-7262-94b5-7eb7df3f5c93/ODONNELL_46_5F_RECIBIDOR_003_a05a4e3197bbf007b7f2aa502a9efbfd.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c392-7262-94b5-7eb7df3f5c93/ODONNELL_46_5F_TERRAZA_004_fe0f71c0d56324036d7d678d2458342b.jpg","https://media.bestflat.com/019c90a6-491f-72bf-8624-e588da6b3dc4/properties/019c90b7-c392-7262-94b5-7eb7df3f5c93/ODONNELL_46_5F_COCINA_005_194ecada802aa4c056f53c71979d18a0.jpg"]}
+];
+const eur=n=>n.toLocaleString('es-ES')+' €';
+const em2=p=>Math.round(p.price/p.m2);
+const title=p=>p.code?p.code:p.street.replace('Calle ','');
+const yes=b=>b?'Sí':'No';
+
+// KPIs
+const tot=P.reduce((a,p)=>a+p.price,0), m2=P.reduce((a,p)=>a+p.m2,0);
+const prices=P.map(p=>p.price);
+document.getElementById('kpis').innerHTML=[
+ ['Activos',P.length],
+ ['Rango de precio',(Math.min(...prices)/1e6).toLocaleString('es-ES',{maximumFractionDigits:2})+' – '+(Math.max(...prices)/1e6).toLocaleString('es-ES',{maximumFractionDigits:2})+' M€'],
+ ['Superficie',Math.min(...P.map(p=>p.m2))+' – '+Math.max(...P.map(p=>p.m2))+' m²'],
+ ['€/m² medio',Math.round(tot/m2).toLocaleString('es-ES')+' €']
+].map(([a,b])=>`<div class="kpi"><span>${a}</span><strong>${b}</strong></div>`).join('');
+
+// filters
+const areas=['Todos',...new Set(P.map(p=>p.area))];
+let cur='Todos';
+function drawFilters(){document.getElementById('filters').innerHTML=areas.map(a=>`<button class="${a===cur?'on':''}" onclick="cur='${a}';drawFilters();drawGrid()">${a}</button>`).join('')}
+function drawGrid(){
+ document.getElementById('grid').innerHTML=P.filter(p=>cur==='Todos'||p.area===cur).map(p=>`
+ <article class="card" onclick="openD('${p.id}')">
+  <div class="ph"><img loading="lazy" src="${p.imgs[0]}" alt="${title(p)}">${p.status.startsWith('En')?`<span class="badge">${p.status}</span>`:''}</div>
+  <div class="meta"><div class="zone">${p.zone}</div><h3>${p.code?p.code+' · ':''}${p.street}</h3>
+  <div class="row"><span class="price">${eur(p.price)}</span><span class="specs">${p.m2} m² · ${p.bed} hab · ${p.bath} baños</span></div></div>
+ </article>`).join('');
+}
+// table
+document.getElementById('tbl').innerHTML=`<thead><tr><th>Activo</th><th>Zona</th><th class="n">Precio</th><th class="n">m²</th><th class="n">€/m²</th><th class="n">Hab.</th><th class="n">Baños</th><th>Planta</th><th>Garaje</th><th>Terraza / balcón</th></tr></thead><tbody>`+
+P.map(p=>`<tr class="click" onclick="openD('${p.id}')"><td><strong>${title(p)}</strong>${p.code?'<br><span style="color:var(--mute);font-size:11px">'+p.street+'</span>':''}</td><td>${p.zone}</td><td class="n">${eur(p.price)}</td><td class="n">${p.m2}</td><td class="n">${em2(p).toLocaleString('es-ES')}</td><td class="n">${p.bed}</td><td class="n">${p.bath}</td><td>${p.floor}</td><td>${yes(p.garage)}</td><td>${yes(p.terrace)}</td></tr>`).join('')+'</tbody>';
+
+// detail
+let lbArr=[],lbI=0;
+function openD(id){
+ const p=P.find(x=>x.id===id);
+ const facts=[['Precio',eur(p.price)],['€/m²',em2(p).toLocaleString('es-ES')+' €'],['Superficie útil',p.m2+' m²'],['Dormitorios',p.bed],['Baños',p.bath],['Planta',p.floor+' · exterior'],['Orientación',p.orient],['Año del edificio',p.year],['Estado',p.status],['Garaje',yes(p.garage)],['Trastero',yes(p.storage)],['Ascensor','Sí']].filter(f=>f[1]!=='—');
+ document.getElementById('detail').innerHTML=`
+ <div class="gal n${Math.min(p.imgs.length,5)}">${p.imgs.slice(0,5).map((u,i)=>`<div onclick="lbOpen('${p.id}',${i})"><img src="${u}" alt=""></div>`).join('')}</div>
+ <div class="dhead"><div><div class="tag">${p.zone}</div><h2>${p.code?p.code+'<br>':''}<span style="font-weight:500">${p.street}</span></h2></div>
+ <div class="dp"><strong>${eur(p.price)}</strong><span>${p.m2} m² · ${p.bed} dormitorios · ${p.bath} baños</span></div></div>
+ <div class="dgrid"><div><p class="lead">${p.lead}</p>${p.desc.map(d=>`<p>${d}</p>`).join('')}<p style="font-size:12px;letter-spacing:.08em;color:var(--mute);margin-top:24px">${p.extras}</p></div>
+ <aside><div class="facts">${facts.map(f=>`<div><span>${f[0]}</span><span>${f[1]}</span></div>`).join('')}</div>
+ <div class="cta">Visitas: contacte con su asesor Olara</div></aside></div>`;
+ document.getElementById('modal').classList.add('open');document.getElementById('modal').scrollTop=0;document.body.style.overflow='hidden';
+ history.replaceState(null,'','#'+id);
+}
+function closeD(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';history.replaceState(null,'',location.pathname)}
+function lbOpen(id,i){lbArr=P.find(x=>x.id===id).imgs;lbI=i;lbShow();document.getElementById('lb').classList.add('open')}
+function lbShow(){document.getElementById('lbimg').src=lbArr[lbI]}
+function lbGo(d){lbI=(lbI+d+lbArr.length)%lbArr.length;lbShow()}
+function lbClose(){document.getElementById('lb').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(document.getElementById('lb').classList.contains('open')){if(e.key==='Escape')lbClose();if(e.key==='ArrowRight')lbGo(1);if(e.key==='ArrowLeft')lbGo(-1)}else if(e.key==='Escape')closeD()});
+drawFilters();drawGrid();
+if(location.hash){const id=location.hash.slice(1);if(P.find(p=>p.id===id))openD(id)}
+</script>
+</body>
+</html>
