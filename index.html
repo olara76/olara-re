@@ -569,6 +569,7 @@ function setLang(lang){
     const v = dict[el.dataset.phI18n]; if(v) el.placeholder = v;
   });
   document.documentElement.lang = lang;
+  document.querySelectorAll('a[data-i18n="nav5"]').forEach(a=>{ a.href = lang==='en' ? '/en/viviendas' : '/viviendas'; });
   document.querySelectorAll('.lang button').forEach(b=>{
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
   });

@@ -1,15 +1,17 @@
 // Fuente: cartera de Arctempus (API pública de su portal, bestflat).
-// Se excluyen los activos OFFMARKET: no se publican en abierto.
+// Se publican todos los activos, incluidos los OFFMARKET.
 const API = 'https://api.app.bestflat.com/v1/properties';
 
-const TYPES = { Flat: 'Piso', 'Ático': 'Ático', 'Dúplex': 'Dúplex', House: 'Casa', Penthouse: 'Ático', Duplex: 'Dúplex' };
-const ORIENT = { north: 'Norte', south: 'Sur', east: 'Este', west: 'Oeste', northeast: 'Noreste', northwest: 'Noroeste', southeast: 'Sureste', southwest: 'Suroeste' };
+const fs = require('fs');
+const path = require('path');
+const TYPES = { Flat: 'flat', 'Ático': 'penthouse', Penthouse: 'penthouse', 'Dúplex': 'duplex', Duplex: 'duplex', House: 'house', Casa: 'house' };
+const ORIENT = ['north', 'south', 'east', 'west', 'northeast', 'northwest', 'southeast', 'southwest'];
 const WORKS = {
   completed: null,
-  delivery_process_to_up: 'En entrega',
-  furniture_and_decoration: 'Amueblando',
-  final_finishing: 'Acabados finales',
-  carpentry_and_kitchen: 'En reforma'
+  delivery_process_to_up: 'delivery',
+  furniture_and_decoration: 'furnishing',
+  final_finishing: 'finishing',
+  carpentry_and_kitchen: 'renovation'
 };
 
 async function getJSON(url) {
@@ -48,7 +50,7 @@ function norm(p) {
     street,
     num,
     city: city || 'Madrid',
-    type: TYPES[p.type] || p.type || 'Vivienda',
+    type: TYPES[p.type] || 'other',
     price,
     m2,
     eurm2: price && m2 ? Math.round(price / m2) : null,
@@ -62,7 +64,7 @@ function norm(p) {
     ac: !!f.air_conditioning,
     heating: !!f.heating,
     elevator: !!f.elevator,
-    orientation: ORIENT[f.orientation] || null,
+    orientation: ORIENT.includes(f.orientation) ? f.orientation : null,
     soon: p.sale_status === 'soon',
     works: WORKS[p.construction_status] || null,
     cover: p.cover_image || null,
@@ -74,7 +76,7 @@ function norm(p) {
 
 async function list() {
   const j = await getJSON(`${API}?page=1&limit=10000&lang=es`);
-  return (j.data || []).filter(p => !isOff(p)).map(norm).map(x => { delete x.num; return x; });
+  return (j.data || []).map(norm).map(x => { delete x.num; return x; });
 }
 
 async function one(id) {
@@ -83,15 +85,17 @@ async function one(id) {
   try { j = await getJSON(`${API}/${id}?lang=es`); } catch (e) { return null; }
   const p = j && j.data;
   if (!p) return null;
-  // Comprobamos OFFMARKET contra el listado (el detalle no siempre trae tags)
+  // El listado trae estado de venta y portada; si ya no está, la vivienda se ha retirado
   const all = await getJSON(`${API}?page=1&limit=10000&lang=es`);
   const inList = (all.data || []).find(x => x.id === p.id);
-  if (!inList || isOff(inList)) return null;
+  if (!inList) return null;
   const base = norm(Object.assign({}, inList, p, { tags: inList.tags, sale_status: inList.sale_status }));
   const gallery = (p.gallery || []).filter(g => g.type !== 'video' && g.url).map(g => g.url);
   const desc = (p.gallery || []).map(g => g.description).find(Boolean) || p.description || '';
   base.images = gallery.length ? gallery : (base.cover ? [base.cover] : []);
   base.desc = scrub(desc, base.street, base.num);
+  base.textos = textos(p.id);
+  if (base.textos) for (const k of Object.keys(base.textos)) base.textos[k] = scrub(base.textos[k], base.street, base.num);
   delete base.num;
   return base;
 }
@@ -104,6 +108,15 @@ function scrub(text, street, num) {
     t = t.replace(new RegExp(esc(street) + '\\s*,?\\s*(n[ºo°.]\\s*)?' + esc(num) + '\\b', 'gi'), street);
   }
   return t;
+}
+
+// Textos reescritos y traducidos por IA (los genera scripts/textos.mjs vía GitHub Actions)
+function textos(id) {
+  try {
+    const f = path.join(process.cwd(), 'textos', id + '.json');
+    const j = JSON.parse(fs.readFileSync(f, 'utf8'));
+    return j.t || null;
+  } catch (e) { return null; }
 }
 
 function esc(s) {
@@ -127,6 +140,6 @@ function md(text) {
   }).join('\n');
 }
 
-const eur = n => (n == null ? '' : Number(n).toLocaleString('es-ES') + ' €');
+const eur = (n, loc) => (n == null ? '' : Number(n).toLocaleString(loc || 'es-ES') + ' €');
 
-module.exports = { list, one, esc, md, eur };
+module.exports = { list, one, esc, md, eur, API, splitTitle, scrub };

@@ -2,8 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/vivienda.js": { "includeFiles": "textos/**" }
+  },
   "rewrites": [
-    { "source": "/viviendas/:id", "destination": "/api/vivienda?id=:id" },
+    { "source": "/viviendas", "destination": "/api/listado?lang=es" },
+    { "source": "/viviendas/:id", "destination": "/api/vivienda?id=:id&lang=es" },
+    { "source": "/:lang(en|de|fr|it|ru|zh)/viviendas", "destination": "/api/listado?lang=:lang" },
+    { "source": "/:lang(en|de|fr|it|ru|zh)/viviendas/:id", "destination": "/api/vivienda?id=:id&lang=:lang" },
     { "source": "/sitemap-viviendas.xml", "destination": "/api/sitemap-viviendas" }
   ],
   "redirects": [
