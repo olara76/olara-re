@@ -249,7 +249,6 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
   </a>
 
   <nav class="nav-links" id="navLinks">
-    <a href="/viviendas" data-i18n="nav5">Viviendas</a>
     <a href="#servicios" data-i18n="nav1">Servicios</a>
     <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
     <a href="#zonas" data-i18n="nav3">Zonas</a>
@@ -490,7 +489,6 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
       <p class="tag" data-i18n="ftTag">Agencia inmobiliaria premium en Madrid.</p>
     </div>
     <nav class="foot-nav">
-      <a href="/viviendas" data-i18n="nav5">Viviendas</a>
       <a href="#servicios" data-i18n="nav1">Servicios</a>
       <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
       <a href="#contacto" data-i18n="nav4">Contacto</a>
@@ -518,7 +516,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
 <script>
 /* ---------- i18n ---------- */
 const EN = {
-  nav1:"Services", nav2:"How we work", nav3:"Areas", nav4:"Contact", nav5:"Homes",
+  nav1:"Services", nav2:"How we work", nav3:"Areas", nav4:"Contact",
   heroEyebrow:"Premium real estate agency · Madrid",
   h1a:"Selling", h1b:"well", h1c:"is not selling fast.",
   heroSub:"We market high-value homes in Madrid and structure investment deals. Few properties, direct attention, and a price backed by real data.",
@@ -569,7 +567,6 @@ function setLang(lang){
     const v = dict[el.dataset.phI18n]; if(v) el.placeholder = v;
   });
   document.documentElement.lang = lang;
-  document.querySelectorAll('a[data-i18n="nav5"]').forEach(a=>{ a.href = lang==='en' ? '/en/viviendas' : '/viviendas'; });
   document.querySelectorAll('.lang button').forEach(b=>{
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
   });

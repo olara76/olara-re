@@ -2,17 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
-  "functions": {
-    "api/vivienda.js": { "includeFiles": "textos/**" }
-  },
-  "rewrites": [
-    { "source": "/viviendas", "destination": "/api/listado?lang=es" },
-    { "source": "/viviendas/:id", "destination": "/api/vivienda?id=:id&lang=es" },
-    { "source": "/:lang(en|de|fr|it|ru|zh)/viviendas", "destination": "/api/listado?lang=:lang" },
-    { "source": "/:lang(en|de|fr|it|ru|zh)/viviendas/:id", "destination": "/api/vivienda?id=:id&lang=:lang" },
-    { "source": "/sitemap-viviendas.xml", "destination": "/api/sitemap-viviendas" }
-  ],
   "redirects": [
+    { "source": "/viviendas", "destination": "/", "permanent": false },
+    { "source": "/viviendas/:path*", "destination": "/", "permanent": false },
+    { "source": "/:lang(en|de|fr|it|ru|zh)/viviendas/:path*", "destination": "/", "permanent": false },
+    { "source": "/sitemap-viviendas.xml", "destination": "/sitemap.xml", "permanent": false },
     { "source": "/politica-privacidad", "destination": "/privacidad", "permanent": true },
     { "source": "/politica-cookies", "destination": "/cookies", "permanent": true },
     { "source": "/legal/aviso-legal(.html)?", "destination": "/aviso-legal", "permanent": true },
