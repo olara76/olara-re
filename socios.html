@@ -551,5 +551,67 @@ calc();
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
+
+<!-- ===== Consentimiento de cookies + Meta Pixel ===== -->
+<style>
+#ck{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0D1B2A;border-top:1px solid rgba(184,153,106,.35);padding:1.25rem 1.5rem;display:none}
+#ck.on{display:block}
+#ck .in{max-width:62rem;margin:0 auto;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+#ck p{font-family:'Inter',system-ui,sans-serif;font-size:.8125rem;line-height:1.6;color:#C9CDD3;margin:0;flex:1 1 22rem}
+#ck a{color:#B8996A;text-decoration:underline}
+#ck .bt{display:flex;gap:.75rem;flex-wrap:wrap}
+#ck button{font-family:'Inter',system-ui,sans-serif;font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:.8125rem 1.75rem;cursor:pointer;border:1px solid #B8996A;background:transparent;color:#B8996A;transition:background .3s,color .3s}
+#ck button.y{background:#B8996A;color:#0D1B2A}
+#ck button:hover{background:#B8996A;color:#0D1B2A}
+</style>
+<div id="ck" role="dialog" aria-live="polite" aria-label="Consentimiento de cookies">
+  <div class="in">
+    <p>Usamos cookies de Meta para medir la eficacia de nuestras campañas publicitarias. Son opcionales: si las rechaza, la web funciona igual. <a href="/cookies">Más información</a>.</p>
+    <div class="bt">
+      <button type="button" id="ck-no">Rechazar</button>
+      <button type="button" class="y" id="ck-yes">Aceptar</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var K='olara-consent-meta', PIXEL='3348410658699187', loaded=false;
+
+  function load(){
+    if(loaded) return; loaded=true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',PIXEL); fbq('track','PageView'); bind();
+  }
+
+  function bind(){
+    var sel='a[href*="calendly.com"],a[href*="wa.me"],a[href^="mailto:"]';
+    Array.prototype.forEach.call(document.querySelectorAll(sel),function(a){
+      if(a.dataset.fbb) return; a.dataset.fbb='1';
+      a.addEventListener('click',function(){
+        if(window.fbq) fbq('track','Lead',{content_name:location.pathname});
+      });
+    });
+  }
+
+  function save(v){ try{localStorage.setItem(K,v);}catch(e){} }
+  function read(){ try{return localStorage.getItem(K);}catch(e){return null;} }
+
+  var box=document.getElementById('ck'), v=read();
+  if(v==='yes'){ load(); }
+  else if(v!=='no'){ box.classList.add('on'); }
+
+  document.getElementById('ck-yes').addEventListener('click',function(){
+    save('yes'); box.classList.remove('on'); load();
+  });
+  document.getElementById('ck-no').addEventListener('click',function(){
+    save('no'); box.classList.remove('on');
+  });
+})();
+</script>
+
 </body>
 </html>
