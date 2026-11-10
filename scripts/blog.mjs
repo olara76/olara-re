@@ -26,14 +26,9 @@ header = header
   .replace(/<div class="lang"[\s\S]*?<\/div>\s*/, "")
   .replace('class="nav"', 'class="nav solid"')
   .replace('href="#top"', 'href="/"')
-  .replace(/href="#(servicios|proceso|zonas|contacto)"/g, 'href="/#$1"')
-  .replace(
-    '<a href="/#contacto"',
-    '<a href="/blog" aria-current="page">Blog</a>\n    <a href="/#contacto"'
-  );
+  .replace(/href="#(servicios|proceso|zonas|contacto)"/g, 'href="/#$1"');
 let footer = home.match(/<footer[\s\S]*?<\/footer>/)[0]
   .replace(/href="#(servicios|proceso|contacto)"/g, 'href="/#$1"')
-  .replace('<a href="/socios"', '<a href="/blog">Blog</a>\n      <a href="/socios"')
   .replace(/<span id="yr"><\/span>/, String(new Date().getFullYear()));
 const wa = home.match(/<a class="wa"[\s\S]*?<\/a>/)[0];
 const consentBlock = (() => {
@@ -217,6 +212,47 @@ writeFileSync(join(ROOT, "blog", "index.html"), page({
   canonical: `${SITE}/blog`, body: listBody,
   ld: [{ "@context": "https://schema.org", "@type": "Blog", name: "Blog de Olara RE", url: `${SITE}/blog`, inLanguage: "es" }],
 }));
+
+/* Página de compradores desde México (landing de campañas y SEO) */
+{
+  const url = `${SITE}/compradores-mexico`;
+  const faq = [
+    ["¿Puede un mexicano comprar vivienda en Madrid sin residir en España?", "Sí. Los extranjeros pueden comprar vivienda en España sin ser residentes. Hace falta NIE y cumplir los trámites habituales de notaría, impuestos y registro."],
+    ["¿Hace falta viajar a Madrid para comprar?", "No necesariamente. Con un poder notarial otorgado en México y apostillado, un representante puede firmar. Conocer la vivienda y la zona en persona reduce riesgos."],
+    ["¿Qué barrios de Madrid cubre Olara RE?", "Salamanca, Chamberí, Justicia, Almagro, El Viso, Jerónimos, Chamartín y Retiro. Trabajamos también fuera de estas zonas cuando la vivienda lo merece."],
+    ["¿Cuánto tarda una compra?", "Depende del NIE, de la cuenta bancaria y de la verificación de la vivienda. Es realista contar con varias semanas desde el acuerdo de precio hasta la firma."],
+  ];
+  const ld = [
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: SITE },
+      { "@type": "ListItem", position: 2, name: "Comprar en Madrid desde México", item: url } ] },
+    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
+  ];
+  const body = `<main>
+<section class="post-hero"><div class="wrap"><hr class="mark"><p class="eyebrow">Compradores desde México</p>
+<h1>Comprar vivienda en Madrid <em>desde México.</em></h1>
+<p class="post-lead">Olara RE es una agencia inmobiliaria premium en Madrid. Acompañamos a compradores mexicanos en la búsqueda, la verificación y la compra de vivienda de alto valor, con un único interlocutor y toda la comunicación en español.</p>
+<p class="hero-cta" style="margin-top:2rem"><a class="btn btn-solid" href="https://wa.me/34686862017?text=Hola%2C%20quiero%20comprar%20vivienda%20en%20Madrid%20desde%20M%C3%A9xico">Escribir por WhatsApp</a>
+<a class="btn btn-ghost" href="/blog/comprar-vivienda-madrid-desde-mexico">Leer la guía de compra</a></p></div></section>
+<section class="on-light band"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Cómo le ayudamos</p></div>
+<h2>Un proceso claro, <em>sin sorpresas.</em></h2></div>
+<div class="services">
+<article class="service"><div class="idx">I</div><h3>Búsqueda y filtro</h3><p>Seleccionamos pocas viviendas que encajan con su presupuesto y su uso, en lugar de enviarle decenas de anuncios.</p></article>
+<article class="service"><div class="idx">II</div><h3>Verificación</h3><p>Revisamos nota simple, cargas, certificado energético y estado de la comunidad antes de que usted reserve.</p></article>
+<article class="service"><div class="idx">III</div><h3>Coordinación de la compra</h3><p>Trabajamos con su abogado o gestor, o le orientamos para encontrarlo: NIE, cuenta, arras, notaría e inscripción.</p></article>
+<article class="service"><div class="idx">IV</div><h3>Visitas y seguimiento a distancia</h3><p>Visitas filtradas, información detallada por WhatsApp y videollamada para que decida sin viajar a ciegas.</p></article>
+</div></div></section>
+<section class="band"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Dónde</p></div><h2>Madrid, <em>por barrios.</em></h2></div>
+<ul class="zones"><li>Salamanca</li><li>Chamberí</li><li>Justicia</li><li>Almagro</li><li>El Viso</li><li>Jerónimos</li><li>Chamartín</li><li>Retiro</li></ul></div></section>
+<section class="on-light band"><article class="prose"><h2>Preguntas frecuentes</h2>
+${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
+<div class="post-cta"><p><strong>Cuéntenos qué busca</strong></p><p>Zona, presupuesto y uso previsto. Le respondemos por WhatsApp en menos de 24 horas laborables.</p><a class="btn btn-solid" href="https://wa.me/34686862017">Escribir por WhatsApp</a></div>
+</article></section></main>`;
+  writeFileSync(join(ROOT, "compradores-mexico.html"), page({
+    title: "Comprar vivienda en Madrid desde México | Olara RE",
+    description: "Agencia premium en Madrid para compradores mexicanos: búsqueda, verificación y compra de vivienda, con atención en español y seguimiento a distancia.",
+    canonical: url, body, ld }));
+}
 
 /* sitemap.xml: páginas fijas + blog */
 const fixed = ["/", "/blog", ...(existsSync(join(ROOT, "compradores-mexico.html")) ? ["/compradores-mexico"] : [])];

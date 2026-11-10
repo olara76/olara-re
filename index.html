@@ -252,6 +252,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
     <a href="#servicios" data-i18n="nav1">Servicios</a>
     <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
     <a href="#zonas" data-i18n="nav3">Zonas</a>
+    <a href="/blog">Blog</a>
     <a href="#contacto" data-i18n="nav4">Contacto</a>
   </nav>
 
@@ -260,6 +261,12 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <span>/</span>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <span>/</span>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      <span>/</span>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <span>/</span>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
     </div>
     <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><i></i><i></i></button>
   </div>
@@ -492,6 +499,7 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
       <a href="#servicios" data-i18n="nav1">Servicios</a>
       <a href="#proceso" data-i18n="nav2">Cómo trabajamos</a>
       <a href="#contacto" data-i18n="nav4">Contacto</a>
+      <a href="/blog">Blog</a>
       <a href="/socios" data-i18n="ftSocios">Únete como socio</a>
       <a href="https://www.linkedin.com/company/olara-re" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
@@ -554,12 +562,127 @@ const EN = {
   lgLegal:"Legal notice", lgPrivacy:"Privacy policy", lgCookies:"Cookies"
 };
 
+const FR = {
+  nav1:"Services", nav2:"Notre méthode", nav3:"Quartiers", nav4:"Contact",
+  heroEyebrow:"Agence immobilière premium · Madrid",
+  h1a:"Bien", h1b:"vendre", h1c:"ce n'est pas vendre vite.",
+  heroSub:"Nous commercialisons des biens de grande valeur à Madrid et structurons des opérations d'investissement. Peu de biens, une attention directe et un prix défendu par les données.",
+  cta1:"Demander une estimation", cta2:"Voir les services",
+  manTitle:"Un bien d'exception n'a pas besoin de plus de portails. Il lui faut un meilleur jugement.",
+  manBody:"Le marché premium de Madrid ne se joue pas sur le volume d'annonces, mais sur la préparation du bien, la construction du prix et l'accès au bon acheteur. Nous traitons peu de biens à la fois, car c'est la seule façon de bien faire les trois.",
+  svcTitle:"Trois façons de travailler", svcTitleEm:"avec nous.",
+  s1t:"Vente de biens premium",
+  s1b:"Nous préparons le bien avant sa mise en marché, fixons un prix appuyé sur des comparables réels et le présentons à une courte liste d'acheteurs qualifiés. Photographie, plan et dossier inclus.",
+  s1n:"Mandat exclusif. Honoraires convenus par écrit avant de commencer.",
+  s2t:"Estimation",
+  s2b:"Un rapport fondé sur les ventes réellement conclues dans votre quartier et pour votre type de bien, pas une fourchette automatique de portail. Nous vous disons ce que vaut votre bien et ce qui ferait varier ce chiffre.",
+  s2n:"Sans frais et sans engagement de mandat.",
+  s3t:"Investissement et tokenisation",
+  s3b:"Nous analysons des opérations d'investissement immobilier — rendement, coût de rénovation, sortie — et structurons le véhicule, y compris la tokenisation de l'actif lorsque l'opération le justifie.",
+  s3n:"L'émission et l'enregistrement d'actifs tokenisés passent toujours par des entités agréées par la CNMV.",
+  prcTitle:"Quatre étapes.", prcTitleEm:"Aucune mauvaise surprise.",
+  p1t:"Estimation", p1b:"Nous visitons le bien et vous remettons le rapport de comparables. Vous décidez de poursuivre ou non.",
+  p2t:"Préparation", p2b:"Documents, photographie, plan et dossier. Rien n'est mis sur le marché à moitié fini.",
+  p3t:"Commercialisation", p3b:"Présentation sélective, visites filtrées et un rapport d'activité chaque semaine.",
+  p4t:"Signature", p4b:"Négociation, compromis et accompagnement jusqu'à la signature chez le notaire.",
+  znTitle:"Madrid,", znTitleEm:"quartier par quartier.",
+  znNote:"Nous travaillons aussi en dehors de ces zones quand le bien le mérite. Demandez-nous.",
+  ctTitle:"Commençons par", ctTitleEm:"l'estimation.",
+  ctLead:"Dites-nous quel bien vous avez et ce dont vous avez besoin. Nous répondons sous un jour ouvré.",
+  ctCal:"Agenda", ctCalV:"Réserver un appel", ctWaV:"Écrire sur WhatsApp", ctZone:"Zone",
+  fName:"Nom", fPhone:"Téléphone", fEmail:"E-mail", fType:"Motif", fMsg:"Votre bien",
+  fMsgPh:"Quartier, surface et état approximatif",
+  fOpt1:"Je souhaite vendre un bien", fOpt2:"Je souhaite une estimation",
+  fOpt3:"Investissement ou tokenisation", fOpt4:"Autre",
+  fConsent:"J'accepte qu'Olara RE traite mes données pour répondre à cette demande, conformément à la politique de confidentialité.",
+  fSend:"Envoyer la demande",
+  ftTag:"Agence immobilière premium à Madrid.", ftSocios:"Devenir partenaire",
+  lgOperator:"Site exploité par Olara Capital SL · CIF B26977355 · Carretera de Fuencarral 56, of. 46, 28108 Alcobendas (Madrid) · info@olara-re.com",
+  lgLegal:"Mentions légales", lgPrivacy:"Politique de confidentialité", lgCookies:"Cookies"
+};
+const DE = {
+  nav1:"Leistungen", nav2:"Unsere Arbeitsweise", nav3:"Viertel", nav4:"Kontakt",
+  heroEyebrow:"Premium-Immobilienagentur · Madrid",
+  h1a:"Gut", h1b:"verkaufen", h1c:"heißt nicht schnell verkaufen.",
+  heroSub:"Wir vermarkten hochwertige Immobilien in Madrid und strukturieren Investitionsvorhaben. Wenige Objekte, direkte Betreuung und ein Preis, der sich mit Daten belegen lässt.",
+  cta1:"Bewertung anfragen", cta2:"Leistungen ansehen",
+  manTitle:"Eine außergewöhnliche Immobilie braucht nicht mehr Portale. Sie braucht besseres Urteilsvermögen.",
+  manBody:"Der Premiummarkt in Madrid bewegt sich nicht über die Zahl der Inserate, sondern über die Vorbereitung des Objekts, einen sauber hergeleiteten Preis und den Zugang zum richtigen Käufer. Wir betreuen wenige Objekte gleichzeitig, weil nur so alle drei Dinge gelingen.",
+  svcTitle:"Drei Wege, mit uns", svcTitleEm:"zu arbeiten.",
+  s1t:"Verkauf von Premium-Immobilien",
+  s1b:"Wir bereiten das Objekt vor, bevor es auf den Markt kommt, setzen einen Preis auf Basis realer Vergleichswerte an und präsentieren es einer kleinen Auswahl qualifizierter Käufer. Fotografie, Grundriss und Exposé inklusive.",
+  s1n:"Alleinauftrag. Honorar vorab schriftlich vereinbart.",
+  s2t:"Bewertung",
+  s2b:"Ein Gutachten auf Grundlage tatsächlich abgeschlossener Verkäufe in Ihrer Lage und Ihrem Objekttyp, keine automatische Portalspanne. Wir sagen Ihnen, was Ihre Immobilie wert ist und was diesen Wert verändern würde.",
+  s2n:"Kostenlos und ohne Mandatsverpflichtung.",
+  s3t:"Investition und Tokenisierung",
+  s3b:"Wir analysieren Immobilieninvestitionen — Rendite, Sanierungskosten, Exit — und strukturieren das Vehikel, einschließlich der Tokenisierung des Objekts, wenn die Transaktion dies rechtfertigt.",
+  s3n:"Ausgabe und Registrierung tokenisierter Vermögenswerte erfolgen immer über von der CNMV zugelassene Stellen.",
+  prcTitle:"Vier Phasen.", prcTitleEm:"Ohne böse Überraschungen.",
+  p1t:"Bewertung", p1b:"Wir besichtigen das Objekt und übergeben Ihnen den Vergleichsbericht. Sie entscheiden, ob wir weitermachen.",
+  p2t:"Vorbereitung", p2b:"Unterlagen, Fotografie, Grundriss und Exposé. Nichts geht halbfertig an den Markt.",
+  p3t:"Vermarktung", p3b:"Selektive Präsentation, gefilterte Besichtigungen und jede Woche ein Aktivitätsbericht.",
+  p4t:"Abschluss", p4b:"Verhandlung, Reservierungsvertrag und Begleitung bis zur Unterzeichnung beim Notar.",
+  znTitle:"Madrid,", znTitleEm:"Viertel für Viertel.",
+  znNote:"Wir arbeiten auch außerhalb dieser Viertel, wenn das Objekt es verdient. Fragen Sie einfach.",
+  ctTitle:"Beginnen wir mit", ctTitleEm:"der Bewertung.",
+  ctLead:"Sagen Sie uns, welche Immobilie Sie haben und was Sie brauchen. Wir antworten innerhalb eines Werktags.",
+  ctCal:"Kalender", ctCalV:"Gespräch buchen", ctWaV:"Per WhatsApp schreiben", ctZone:"Gebiet",
+  fName:"Name", fPhone:"Telefon", fEmail:"E-Mail", fType:"Anliegen", fMsg:"Ihre Immobilie",
+  fMsgPh:"Lage, Größe und ungefährer Zustand",
+  fOpt1:"Ich möchte eine Immobilie verkaufen", fOpt2:"Ich möchte eine Bewertung",
+  fOpt3:"Investition oder Tokenisierung", fOpt4:"Sonstiges",
+  fConsent:"Ich willige ein, dass Olara RE meine Daten zur Beantwortung dieser Anfrage gemäß der Datenschutzerklärung verarbeitet.",
+  fSend:"Anfrage senden",
+  ftTag:"Premium-Immobilienagentur in Madrid.", ftSocios:"Als Partner beitreten",
+  lgOperator:"Betrieben von Olara Capital SL · CIF B26977355 · Carretera de Fuencarral 56, of. 46, 28108 Alcobendas (Madrid) · info@olara-re.com",
+  lgLegal:"Impressum", lgPrivacy:"Datenschutzerklärung", lgCookies:"Cookies"
+};
+const IT = {
+  nav1:"Servizi", nav2:"Come lavoriamo", nav3:"Zone", nav4:"Contatto",
+  heroEyebrow:"Agenzia immobiliare premium · Madrid",
+  h1a:"Vendere", h1b:"bene", h1c:"non significa vendere in fretta.",
+  heroSub:"Commercializziamo immobili di alto valore a Madrid e strutturiamo operazioni di investimento. Pochi immobili, attenzione diretta e un prezzo sostenuto dai dati.",
+  cta1:"Richiedi una valutazione", cta2:"Vedi i servizi",
+  manTitle:"Un immobile eccezionale non ha bisogno di più portali. Ha bisogno di più giudizio.",
+  manBody:"Il mercato premium di Madrid non si muove per volume di annunci, ma per la preparazione dell'immobile, la costruzione del prezzo e l'accesso all'acquirente giusto. Seguiamo pochi immobili alla volta perché è l'unico modo per fare bene tutte e tre le cose.",
+  svcTitle:"Tre modi di lavorare", svcTitleEm:"con noi.",
+  s1t:"Vendita di immobili premium",
+  s1b:"Prepariamo l'immobile prima di portarlo sul mercato, fissiamo un prezzo sostenuto da comparabili reali e lo presentiamo a una rosa ristretta di acquirenti qualificati. Fotografie, planimetria e dossier inclusi.",
+  s1n:"Mandato in esclusiva. Onorari concordati per iscritto prima di iniziare.",
+  s2t:"Valutazione",
+  s2b:"Un rapporto basato sulle operazioni realmente concluse nella sua zona e per la sua tipologia, non su una forbice automatica dei portali. Le diciamo quanto vale il suo immobile e che cosa cambierebbe quel valore.",
+  s2n:"Gratuita e senza impegno di mandato.",
+  s3t:"Investimento e tokenizzazione",
+  s3b:"Analizziamo operazioni di investimento immobiliare — rendimento, costo di ristrutturazione, uscita — e strutturiamo il veicolo, inclusa la tokenizzazione dell'asset quando l'operazione lo giustifica.",
+  s3n:"L'emissione e la registrazione di asset tokenizzati avvengono sempre tramite soggetti autorizzati dalla CNMV.",
+  prcTitle:"Quattro fasi.", prcTitleEm:"Nessuna sorpresa.",
+  p1t:"Valutazione", p1b:"Visitiamo l'immobile e le consegniamo il rapporto sui comparabili. È lei a decidere se proseguire.",
+  p2t:"Preparazione", p2b:"Documenti, fotografie, planimetria e dossier. Nulla va sul mercato a metà.",
+  p3t:"Commercializzazione", p3b:"Presentazione selettiva, visite filtrate e un rapporto di attività ogni settimana.",
+  p4t:"Chiusura", p4b:"Trattativa, contratto preliminare e assistenza fino al rogito dal notaio.",
+  znTitle:"Madrid,", znTitleEm:"quartiere per quartiere.",
+  znNote:"Lavoriamo anche fuori da queste zone quando l'immobile lo merita. Chieda pure.",
+  ctTitle:"Cominciamo dalla", ctTitleEm:"valutazione.",
+  ctLead:"Ci dica che immobile ha e di che cosa ha bisogno. Rispondiamo entro un giorno lavorativo.",
+  ctCal:"Calendario", ctCalV:"Prenota una chiamata", ctWaV:"Scrivi su WhatsApp", ctZone:"Zona",
+  fName:"Nome", fPhone:"Telefono", fEmail:"E-mail", fType:"Motivo", fMsg:"Il suo immobile",
+  fMsgPh:"Zona, dimensioni e stato approssimativo",
+  fOpt1:"Voglio vendere un immobile", fOpt2:"Voglio una valutazione",
+  fOpt3:"Investimento o tokenizzazione", fOpt4:"Altro",
+  fConsent:"Acconsento al trattamento dei miei dati da parte di Olara RE per rispondere a questa richiesta, secondo l'informativa sulla privacy.",
+  fSend:"Invia richiesta",
+  ftTag:"Agenzia immobiliare premium a Madrid.", ftSocios:"Diventa partner",
+  lgOperator:"Sito gestito da Olara Capital SL · CIF B26977355 · Carretera de Fuencarral 56, of. 46, 28108 Alcobendas (Madrid) · info@olara-re.com",
+  lgLegal:"Note legali", lgPrivacy:"Informativa sulla privacy", lgCookies:"Cookie"
+};
+
 const ES = {};
 document.querySelectorAll('[data-i18n]').forEach(el=>{ ES[el.dataset.i18n] = el.textContent; });
 document.querySelectorAll('[data-ph-i18n]').forEach(el=>{ ES[el.dataset.phI18n] = el.placeholder; });
 
 function setLang(lang){
-  const dict = lang === 'en' ? EN : ES;
+  const dict = ({en:EN,fr:FR,de:DE,it:IT})[lang] || ES;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const v = dict[el.dataset.i18n]; if(v) el.textContent = v;
   });
@@ -577,8 +700,7 @@ document.querySelectorAll('.lang button').forEach(b=>{
 });
 try{
   const saved = localStorage.getItem('olara-lang');
-  if(saved === 'en') setLang('en');
-  else if(!saved && (navigator.language||'').slice(0,2) !== 'es') setLang('en');
+  if(saved && saved !== 'es' && ({en:1,fr:1,de:1,it:1})[saved]) setLang(saved);
 }catch(e){}
 
 /* ---------- nav ---------- */
@@ -618,7 +740,7 @@ const HS_URL    = `https://api-eu1.hsforms.com/submissions/v3/integration/submit
 const form = document.getElementById('form');
 const msg  = document.getElementById('formMsg');
 const btn  = form.querySelector('button[type=submit]');
-const en   = () => document.documentElement.lang === 'en';
+const en   = () => document.documentElement.lang !== 'es';
 
 function say(t){ msg.textContent = t; msg.classList.add('show'); }
 
