@@ -1,1 +1,25 @@
-{ "fecha": "2026-11-13", "label": "Propietarios · Madrid", "title": "Cuánto cuesta vender un piso en Madrid", "subtitle": "Plusvalía, IRPF, hipoteca, certificado energético y honorarios.", "footer": "olara-re.com/blog" }
+{
+  "fecha": "2026-11-13",
+  "label": "Propietarios · Madrid",
+  "title": "Cuánto cuesta vender un piso en Madrid",
+  "subtitle": "Plusvalía, IRPF, hipoteca, certificado energético y honorarios.",
+  "footer": "olara-re.com/blog",
+  "stories": [
+    {
+      "kicker": "Vender en Madrid",
+      "text": "¿Cuánto cuesta vender un piso en Madrid?"
+    },
+    {
+      "kicker": "Impuestos",
+      "text": "Plusvalía municipal e IRPF por la ganancia: dos impuestos distintos."
+    },
+    {
+      "kicker": "Antes de la firma",
+      "text": "Cancelar la hipoteca y tener el certificado energético."
+    },
+    {
+      "kicker": "Honorarios",
+      "text": "Los de la agencia, acordados por escrito antes de empezar."
+    }
+  ]
+}
