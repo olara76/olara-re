@@ -254,8 +254,84 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
     canonical: url, body, ld }));
 }
 
+
+/* Página de valoración en 24 horas (landing de Google Ads para propietarios) */
+{
+  const url = `${SITE}/valoracion`;
+  const faq = [
+    ["¿La valoración es una tasación oficial?", "No. Es una valoración orientativa basada en comparables reales y en las superficies de su escritura. Una tasación oficial solo la emite un tasador homologado."],
+    ["¿Cuánto cuesta y me compromete a algo?", "Es gratuita y no le compromete a firmar ningún encargo. Usted decide después si quiere vender, con quién y cómo."],
+    ["¿Valoran viviendas heredadas?", "Sí, también las que aún no están repartidas entre los herederos o que tienen hipoteca u otras cargas."],
+    ["¿Quién me contesta y en cuánto tiempo?", "Le contesta una persona del equipo, por el canal que prefiera (WhatsApp, teléfono o correo), el mismo día o, como máximo, en 24 horas laborables."],
+    ["¿En qué zonas valoran?", "Madrid capital y las zonas residenciales del norte, el noroeste y el este de la Comunidad de Madrid."],
+  ];
+  const ld = [
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: SITE },
+      { "@type": "ListItem", position: 2, name: "Valoración de su vivienda en 24 horas", item: url } ] },
+    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
+  ];
+  const body = `<main>
+<section class="post-hero"><div class="wrap"><hr class="mark"><p class="eyebrow">Valoración de su vivienda</p>
+<h1>Valoración realista de su vivienda en Madrid, <em>en 24 horas.</em></h1>
+<p class="post-lead">Olara RE le da una valoración orientativa de su vivienda en un máximo de 24 horas laborables, con comparables reales y sin inflar el precio. Es gratuita, sin compromiso y no es una tasación oficial.</p>
+<p class="hero-cta" style="margin-top:2rem"><a class="btn btn-solid" href="#valorar">Pedir mi valoración</a>
+<a class="btn btn-ghost" href="https://wa.me/34686862017?text=Hola%2C%20quiero%20una%20valoraci%C3%B3n%20de%20mi%20vivienda%20en%20Madrid">Escribir por WhatsApp</a></p></div></section>
+<section class="on-light band"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Cómo trabajamos</p></div>
+<h2>Un precio que se <em>puede defender.</em></h2></div>
+<div class="services">
+<article class="service"><div class="idx">I</div><h3>Superficies reales</h3><p>Trabajamos con la superficie útil y la de su escritura, no solo con la del catastro, que suele diferir.</p></article>
+<article class="service"><div class="idx">II</div><h3>Comparables de operaciones reales</h3><p>Le explicamos con qué ventas cercanas comparamos su vivienda y por qué, para que el precio no sea una cifra sin respaldo.</p></article>
+<article class="service"><div class="idx">III</div><h3>Su decisión, con información</h3><p>Le explicamos las opciones: vender con una agencia o, si su vivienda encaja y necesita reforma, estudiar una oferta de compra directa al contado.</p></article>
+</div></div></section>
+<section class="band" id="valorar"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Solicitud</p></div><h2>Cuéntenos <em>su vivienda.</em></h2></div>
+<form id="valform" novalidate style="max-width:40rem">
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+<div class="two"><div class="field"><label for="v-name">Nombre</label><input id="v-name" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="v-phone">Teléfono</label><input id="v-phone" name="phone" type="tel" autocomplete="tel" required></div></div>
+<div class="field"><label for="v-email">Email</label><input id="v-email" name="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="v-addr">Dirección o zona de la vivienda</label><input id="v-addr" name="address" type="text" required></div>
+<div class="two"><div class="field"><label for="v-m2">Metros aproximados</label><input id="v-m2" name="m2" type="text"></div>
+<div class="field"><label for="v-why">Situación</label><select id="v-why" name="type"><option>Herencia</option><option>Quiero cambiar de vivienda</option><option>Otro motivo</option></select></div></div>
+<div class="field"><label for="v-msg">Algo más que debamos saber (opcional)</label><textarea id="v-msg" name="message"></textarea></div>
+<label class="consent"><input type="checkbox" name="consent" required><span>Acepto que Olara RE trate mis datos para responder a esta solicitud, conforme a la <a href="/privacidad" target="_blank">política de privacidad</a>.</span></label>
+<button class="btn btn-solid" type="submit">Pedir mi valoración</button>
+<p class="form-msg" id="valMsg" role="status"></p></form></div></section>
+<section class="on-light band"><article class="prose"><h2>Preguntas frecuentes</h2>
+${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
+<p class="sources">La valoración es orientativa y no sustituye a una tasación. Los resultados dependen de cada vivienda y del momento del mercado.</p>
+</article></section></main>
+<script>
+(function(){
+  var f=document.getElementById('valform'), m=document.getElementById('valMsg'), b=f.querySelector('button[type=submit]');
+  function say(t){ m.textContent=t; m.classList.add('show'); }
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    if(!f.checkValidity()){ say('Complete los campos obligatorios.'); var x=f.querySelector(':invalid'); if(x) x.focus(); return; }
+    var d=new FormData(f);
+    var msg='Dirección o zona: '+(d.get('address')||'')+'. Metros: '+(d.get('m2')||'—')+'. '+(d.get('message')||'');
+    var payload={name:d.get('name')||'',phone:d.get('phone')||'',email:d.get('email')||'',type:'Valoración · '+(d.get('type')||''),message:msg,consent:true,website:d.get('website')||'',page:location.pathname};
+    b.disabled=true; say('Enviando…');
+    try{
+      var r=await fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(!r.ok) throw new Error(r.status);
+      f.reset();
+      try{ if(window.fbq) fbq('track','Lead',{content_name:'valoracion'}); }catch(e1){}
+      try{ if(window.gtag) gtag('event','conversion',{send_to:'AW-18567283541/FBQqCPrp27UdENWGyZVF',value:1.0,currency:'EUR'}); }catch(e2){}
+      say('Gracias. Le contestamos el mismo día o, como máximo, en 24 horas laborables.');
+    }catch(err){ say('Ha ocurrido un error. Escríbanos a info@olara-re.com o por WhatsApp.'); }
+    finally{ b.disabled=false; }
+  });
+})();
+</script>`;
+  writeFileSync(join(ROOT, "valoracion.html"), page({
+    title: "Valoración de su vivienda en Madrid en 24 horas | Olara RE",
+    description: "Valoración orientativa y gratuita de su vivienda en Madrid en un máximo de 24 horas laborables, con comparables reales y sin inflar el precio.",
+    canonical: url, body, ld }));
+}
+
 /* sitemap.xml: páginas fijas + blog */
-const fixed = ["/", "/blog", ...(existsSync(join(ROOT, "compradores-mexico.html")) ? ["/compradores-mexico"] : [])];
+const fixed = ["/", "/blog", ...(existsSync(join(ROOT, "compradores-mexico.html")) ? ["/compradores-mexico"] : []), "/valoracion"];
 const today = new Date().toISOString().slice(0, 10);
 const urls = [
   ...fixed.map((u) => ({ loc: SITE + (u === "/" ? "/" : u), lastmod: today, p: u === "/" ? "1.0" : "0.8" })),
@@ -270,6 +346,7 @@ writeFileSync(join(ROOT, "llms.txt"), `# Olara RE
 ## Páginas
 - [Inicio](${SITE}/): servicios, forma de trabajar y zonas.
 - [Blog](${SITE}/blog): guías para vender y comprar vivienda en Madrid.
+- [Valoración de su vivienda en 24 horas](${SITE}/valoracion)
 ${fixed.includes("/compradores-mexico") ? `- [Comprar en Madrid desde México](${SITE}/compradores-mexico)\n` : ""}
 ## Artículos
 ${posts.map((p) => `- [${p.title}](${SITE}/blog/${p.slug}): ${p.description}`).join("\n")}
