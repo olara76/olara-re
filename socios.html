@@ -566,7 +566,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 </style>
 <div id="ck" role="dialog" aria-live="polite" aria-label="Consentimiento de cookies">
   <div class="in">
-    <p>Usamos cookies de Meta para medir la eficacia de nuestras campañas publicitarias. Son opcionales: si las rechaza, la web funciona igual. <a href="/cookies">Más información</a>.</p>
+    <p>Usamos cookies de Meta y de Google para medir la eficacia de nuestras campañas publicitarias. Son opcionales: si las rechaza, la web funciona igual. <a href="/cookies">Más información</a>.</p>
     <div class="bt">
       <button type="button" id="ck-no">Rechazar</button>
       <button type="button" class="y" id="ck-yes">Aceptar</button>
@@ -585,6 +585,8 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
     (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init',PIXEL); fbq('track','PageView'); bind();
+    var g=document.createElement('script'); g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id=AW-18567283541'; document.head.appendChild(g);
+    window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments)}; gtag('js',new Date()); gtag('config','AW-18567283541');
   }
 
   function bind(){
