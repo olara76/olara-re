@@ -6,6 +6,18 @@
  *   FORM_TO_EMAIL    (opcional) destino; por defecto info@olara-re.com
  */
 const esc = (s) => String(s ?? "").replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]));
+const canalDe = (o) => {
+  const src = String(o.s ?? "").toLowerCase(), ref = String(o.r ?? "").toLowerCase();
+  if (o.g || src === "google") return "Google";
+  if (o.f || ["facebook", "instagram", "meta", "fb", "ig"].includes(src)) return "Meta";
+  if (src === "linkedin") return "LinkedIn";
+  if (src) return src.charAt(0).toUpperCase() + src.slice(1);
+  if (/linkedin|lnkd/.test(ref)) return "LinkedIn (orgánico)";
+  if (/instagram|facebook|fb\./.test(ref)) return "Meta (orgánico)";
+  if (/google/.test(ref)) return "Google (orgánico)";
+  if (ref) return "Web " + ref;
+  return "Directo";
+};
 const clean = (s, n) => String(s ?? "").replace(/[\r\n]+/g, " ").trim().slice(0, n);
 
 module.exports = async (req, res) => {
@@ -19,16 +31,19 @@ module.exports = async (req, res) => {
   if (!name || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || b.consent !== true) {
     return res.status(400).json({ ok: false, error: "datos incompletos" });
   }
+  const o = b.origin && typeof b.origin === "object" ? b.origin : {};
+  const canal = canalDe(o);
+  const origen = [o.s && "fuente: " + clean(o.s, 60), o.m && "medio: " + clean(o.m, 40), o.c && "campaña: " + clean(o.c, 80), o.g && "clic de Google Ads", o.f && "clic de Meta", o.r && "referente: " + clean(o.r, 80), o.l && "primera página: " + clean(o.l, 120)].filter(Boolean).join(" · ") || "sin datos (visita directa)";
   const key = process.env.RESEND_API_KEY, from = process.env.FORM_FROM_EMAIL;
   const to = process.env.FORM_TO_EMAIL || "info@olara-re.com";
   if (!key || !from) return res.status(500).json({ ok: false, error: "no configurado" });
   const html = `<p><strong>Nueva consulta desde olara-re.com</strong></p>
-<p>Nombre: ${esc(name)}<br>Teléfono: ${esc(phone)}<br>Email: ${esc(email)}<br>Motivo: ${esc(type)}<br>Página: ${esc(page)}</p>
+<p>Nombre: ${esc(name)}<br>Teléfono: ${esc(phone)}<br>Email: ${esc(email)}<br>Motivo: ${esc(type)}<br>Página: ${esc(page)}<br>Origen: <strong>${esc(canal)}</strong> · ${esc(origen)}</p>
 <p>${esc(message).replace(/\n/g, "<br>")}</p><p>Consentimiento: aceptado.</p>`;
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from, to: [to], reply_to: email, subject: `Consulta web · ${type || "Olara RE"} · ${name}`, html }),
+    body: JSON.stringify({ from, to: [to], reply_to: email, subject: `[${canal}] Consulta web · ${type || "Olara RE"} · ${name}`, html }),
   });
   if (!r.ok) return res.status(502).json({ ok: false });
   return res.status(200).json({ ok: true });

@@ -310,7 +310,7 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
     if(!f.checkValidity()){ say('Complete los campos obligatorios.'); var x=f.querySelector(':invalid'); if(x) x.focus(); return; }
     var d=new FormData(f);
     var msg='Dirección o zona: '+(d.get('address')||'')+'. Metros: '+(d.get('m2')||'—')+'. '+(d.get('message')||'');
-    var payload={name:d.get('name')||'',phone:d.get('phone')||'',email:d.get('email')||'',type:'Valoración · '+(d.get('type')||''),message:msg,consent:true,website:d.get('website')||'',page:location.pathname};
+    var payload={name:d.get('name')||'',phone:d.get('phone')||'',email:d.get('email')||'',type:'Valoración · '+(d.get('type')||''),message:msg,consent:true,website:d.get('website')||'',page:location.pathname,origin:(function(){try{return JSON.parse(sessionStorage.getItem('olara-origen')||'null');}catch(e){return null;}})()};
     b.disabled=true; say('Enviando…');
     try{
       var r=await fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});

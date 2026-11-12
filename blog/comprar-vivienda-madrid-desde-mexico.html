@@ -434,5 +434,25 @@ footer{border-top:1px solid var(--hair);padding:clamp(3rem,7vh,5rem) var(--pad) 
   });
 })();
 </script>
+
+<script>
+(function(){
+  try{
+    var K='olara-origen', q=new URLSearchParams(location.search), cur=sessionStorage.getItem(K);
+    var has=q.get('utm_source')||q.get('gclid')||q.get('fbclid'), o;
+    if(cur&&!has){ o=JSON.parse(cur); }
+    else{
+      var r=''; try{ r=document.referrer?new URL(document.referrer).hostname:''; }catch(e){}
+      if(r===location.hostname) r='';
+      o={s:(q.get('utm_source')||'').slice(0,60),m:(q.get('utm_medium')||'').slice(0,40),c:(q.get('utm_campaign')||'').slice(0,80),g:q.get('gclid')?1:0,f:q.get('fbclid')?1:0,r:r.slice(0,80),l:location.pathname.slice(0,120)};
+      sessionStorage.setItem(K,JSON.stringify(o));
+    }
+    var ref=(o.s||o.r||'directo')+' · '+location.pathname;
+    Array.prototype.forEach.call(document.querySelectorAll('a[href*="wa.me"]'),function(a){
+      try{ var u=new URL(a.href); u.searchParams.set('text',(u.searchParams.get('text')||'Hola')+' (ref: '+ref+')'); a.href=u.toString(); }catch(e){}
+    });
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
