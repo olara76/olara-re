@@ -263,7 +263,7 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
     ["¿Cuánto cuesta y me compromete a algo?", "Es gratuita y no le compromete a firmar ningún encargo. Usted decide después si quiere vender, con quién y cómo."],
     ["¿Valoran viviendas heredadas?", "Sí, también las que aún no están repartidas entre los herederos o que tienen hipoteca u otras cargas."],
     ["¿Quién me contesta y en cuánto tiempo?", "Le contesta personalmente el fundador, Óscar Larrea, con 23 años en el sector inmobiliario, por el canal que prefiera (WhatsApp, teléfono o correo), el mismo día o, como máximo, en 24 horas laborables."],
-    ["¿Cobran comisión al vendedor?", "Si decide vender con Olara RE en exclusiva, no cobramos comisión al vendedor: la asume el comprador. Las condiciones se confirman por escrito en el encargo, antes de que firme nada."],
+    ["¿Cobran comisión al vendedor?", "Si decide vender con Olara RE en exclusiva, no cobramos comisión al vendedor: la asume el comprador. Los honorarios son la comisión de intermediación: no incluyen gastos ajenos a la operación, como impuestos o el certificado energético. Las condiciones se confirman por escrito en el encargo, antes de que firme nada."],
     ["¿Qué diferencia hay entre vender con agencia y una oferta de compra directa?", "Con la agencia, su vivienda sale al mercado y usted decide con las ofertas reales que lleguen. Con una oferta directa, Olara Capital estudia comprarla al contado con fondos propios y le responde en 24-48 horas con la información completa. Solo si su vivienda encaja con lo que compramos. En ambos casos, usted elige y no se compromete a nada con la valoración."],
     ["¿En qué zonas valoran?", "Madrid capital y las zonas residenciales del norte, el noroeste y el este de la Comunidad de Madrid."],
   ];
@@ -286,12 +286,6 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <article class="service"><div class="idx">II</div><h3>Comparables de operaciones reales</h3><p>Le explicamos con qué ventas cercanas comparamos su vivienda y por qué, para que el precio no sea una cifra sin respaldo.</p></article>
 <article class="service"><div class="idx">III</div><h3>Su decisión, con información</h3><p>Le explicamos las opciones: vender con una agencia o, si su vivienda encaja y necesita reforma, estudiar una oferta de compra directa al contado.</p></article>
 </div></div></section>
-<section class="band"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Dos caminos</p></div>
-<h2>Véndala en el mercado o <em>véndala ya.</em></h2></div>
-<div class="services">
-<article class="service"><div class="idx">A</div><h3>Vender con Olara RE</h3><p>Salimos al mercado con superficies reales y pocas visitas. Si nos da la venta en exclusiva, no cobramos comisión al vendedor: la asume el comprador. Lo confirmamos por escrito.</p></article>
-<article class="service"><div class="idx">B</div><h3>Oferta de compra directa</h3><p>Si su vivienda encaja con lo que compramos, Olara Capital estudia comprarla al contado y con fondos propios. Respuesta en 24-48 horas, y firma de arras o escritura cuando le convenga.</p></article>
-</div></div></section>
 <section class="band" id="valorar"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Solicitud</p></div><h2>Cuéntenos <em>su vivienda.</em></h2></div>
 <form id="valform" novalidate style="max-width:40rem">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
@@ -307,6 +301,7 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <p class="form-msg" id="valMsg" role="status"></p></form></div></section>
 <section class="on-light band"><article class="prose"><h2>Preguntas frecuentes</h2>
 ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
+<p>¿Prefiere vender directamente, sin comercializar su vivienda? Conozca <a href="https://olara-capital.com/compramos-tu-inmueble?utm_source=olara-re&amp;utm_medium=landing&amp;utm_campaign=valoracion">Olara Capital</a>.</p>
 <p class="sources">La valoración es orientativa y no sustituye a una tasación. Los resultados dependen de cada vivienda y del momento del mercado.</p>
 </article></section></main>
 <script>
