@@ -262,7 +262,9 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
     ["¿La valoración es una tasación oficial?", "No. Es una valoración orientativa basada en comparables reales y en las superficies de su escritura. Una tasación oficial solo la emite un tasador homologado."],
     ["¿Cuánto cuesta y me compromete a algo?", "Es gratuita y no le compromete a firmar ningún encargo. Usted decide después si quiere vender, con quién y cómo."],
     ["¿Valoran viviendas heredadas?", "Sí, también las que aún no están repartidas entre los herederos o que tienen hipoteca u otras cargas."],
-    ["¿Quién me contesta y en cuánto tiempo?", "Le contesta una persona del equipo, por el canal que prefiera (WhatsApp, teléfono o correo), el mismo día o, como máximo, en 24 horas laborables."],
+    ["¿Quién me contesta y en cuánto tiempo?", "Le contesta personalmente el fundador, Óscar Larrea, con 23 años en el sector inmobiliario, por el canal que prefiera (WhatsApp, teléfono o correo), el mismo día o, como máximo, en 24 horas laborables."],
+    ["¿Cobran comisión al vendedor?", "Si decide vender con Olara RE en exclusiva, no cobramos comisión al vendedor: la asume el comprador. Las condiciones se confirman por escrito en el encargo, antes de que firme nada."],
+    ["¿Qué diferencia hay entre vender con agencia y una oferta de compra directa?", "Con la agencia, su vivienda sale al mercado y usted decide con las ofertas reales que lleguen. Con una oferta directa, Olara Capital estudia comprarla al contado con fondos propios y le responde en 24-48 horas con la información completa. Solo si su vivienda encaja con lo que compramos. En ambos casos, usted elige y no se compromete a nada con la valoración."],
     ["¿En qué zonas valoran?", "Madrid capital y las zonas residenciales del norte, el noroeste y el este de la Comunidad de Madrid."],
   ];
   const ld = [
@@ -283,6 +285,12 @@ ${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <article class="service"><div class="idx">I</div><h3>Superficies reales</h3><p>Trabajamos con la superficie útil y la de su escritura, no solo con la del catastro, que suele diferir.</p></article>
 <article class="service"><div class="idx">II</div><h3>Comparables de operaciones reales</h3><p>Le explicamos con qué ventas cercanas comparamos su vivienda y por qué, para que el precio no sea una cifra sin respaldo.</p></article>
 <article class="service"><div class="idx">III</div><h3>Su decisión, con información</h3><p>Le explicamos las opciones: vender con una agencia o, si su vivienda encaja y necesita reforma, estudiar una oferta de compra directa al contado.</p></article>
+</div></div></section>
+<section class="band"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Dos caminos</p></div>
+<h2>Véndala en el mercado o <em>véndala ya.</em></h2></div>
+<div class="services">
+<article class="service"><div class="idx">A</div><h3>Vender con Olara RE</h3><p>Salimos al mercado con superficies reales y pocas visitas. Si nos da la venta en exclusiva, no cobramos comisión al vendedor: la asume el comprador. Lo confirmamos por escrito.</p></article>
+<article class="service"><div class="idx">B</div><h3>Oferta de compra directa</h3><p>Si su vivienda encaja con lo que compramos, Olara Capital estudia comprarla al contado y con fondos propios. Respuesta en 24-48 horas, y firma de arras o escritura cuando le convenga.</p></article>
 </div></div></section>
 <section class="band" id="valorar"><div class="wrap"><div class="sec-head"><div><hr class="mark"><p class="eyebrow">Solicitud</p></div><h2>Cuéntenos <em>su vivienda.</em></h2></div>
 <form id="valform" novalidate style="max-width:40rem">
